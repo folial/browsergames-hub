@@ -56,7 +56,7 @@ browsergames-site/
 
 ## SEO setup before launch
 
-1. Replace `browsergames.example.com` in `robots.txt` and `sitemap.xml` with your real domain.
+1. Replace `browsergames.click` in `robots.txt` and `sitemap.xml` with your real domain.
    Also search-replace it in all HTML files (canonical/og tags use it).
 2. Add Google Search Console and submit `sitemap.xml`.
 3. Add Analytics (GA4) and AdSense after first content is indexed.

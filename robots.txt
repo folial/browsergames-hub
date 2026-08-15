@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://browsergames.example.com/sitemap.xml
+Sitemap: https://browsergames.click/sitemap.xml
