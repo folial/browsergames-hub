@@ -428,8 +428,18 @@ h1, h2, h3, h4, .brand, .btn, .chip, .post-tag, .mini-rank, .bento-link, .finder
   font-size: 0.5rem;
 }
 
-.game-card a {
+.game-card a,
+.game-card .game-link {
+  display: inline-block;
+  margin-top: 12px;
   color: var(--primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+a.game-card {
+  display: block;
+  color: var(--text);
 }
 
 .side-card h3 {
