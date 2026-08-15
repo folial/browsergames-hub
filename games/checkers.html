@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en" data-seo-applied>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pixel Checkers — Free 2-Player Board Game (No Download)</title>
+  <meta name="description" content="Play Checkers online with two players on the same screen. Free pixel-art browser board game, no download or sign-up." />
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/pixel.css" />
+  <style>
+  .game-wrap { display:grid; justify-items:center; gap:16px; padding:28px 0 50px; }
+  .game-frame { background:var(--surface); border:4px solid var(--border); box-shadow:var(--shadow-lg); padding:12px; }
+  canvas { display:block; width:min(82vw, 620px); height:auto; image-rendering:pixelated; background:#10200f; cursor:pointer; }
+  .game-hud { display:flex; justify-content:space-between; gap:14px; width:min(82vw, 620px); font-family:var(--font-display); font-size:0.6rem; text-transform:uppercase; flex-wrap:wrap; }
+  .game-hud span { background:var(--surface-2); border:2px solid var(--border); box-shadow:2px 2px 0 var(--border); padding:8px 10px; }
+  .controls-note { max-width:500px; text-align:center; color:var(--text); opacity:0.92; font-size:1rem; }
+  .btn-restart { border:3px solid var(--border); box-shadow:4px 4px 0 var(--border); background:var(--cta); color:var(--cta-text); font-family:var(--font-display); font-size:0.62rem; text-transform:uppercase; padding:12px 16px; cursor:pointer; }
+  .btn-restart:active { transform:translate(3px,3px); box-shadow:0 0 0 var(--border); }
+
+    .ch-board { display:grid; grid-template-columns:repeat(8, 52px); gap:2px; background:var(--surface); border:4px solid var(--border); box-shadow:var(--shadow-lg); padding:6px; }
+    .ch-cell { width:52px; height:52px; background:var(--surface-2); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; cursor:pointer; }
+    .ch-cell.dark { background:var(--primary); }
+    .piece { width:36px; height:36px; border-radius:0; border:3px solid var(--border); }
+    .piece.r { background:var(--danger); } .piece.b { background:#3b2e25; }
+    .piece.king::after { content:'K'; font-family:var(--font-display); font-size:0.6rem; color:#fff; display:flex; align-items:center; justify-content:center; height:100%; }
+    .ch-cell.sel { outline:3px solid var(--cta); outline-offset:-3px; }
+    @media (max-width:480px){ .ch-board { grid-template-columns:repeat(8, 1fr); } .ch-cell { width:auto; height:36px; } .piece { width:24px; height:24px; } }
+  </style>
+
+  <link rel="canonical" href="https://browsergames.example.com/games/checkers.html" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BrowserGames Hub" />
+  <meta property="og:title" content="Pixel Checkers — Free 2-Player Board Game (No Download)" />
+  <meta property="og:description" content="Play Checkers online with two players on the same screen. Free pixel-art browser board game, no download or sign-up." />
+  <meta property="og:url" content="https://browsergames.example.com/games/checkers.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Pixel Checkers — Free 2-Player Board Game (No Download)" />
+  <meta name="twitter:description" content="Play Checkers online with two players on the same screen. Free pixel-art browser board game, no download or sign-up." />
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"VideoGame","name":"Pixel Checkers — Free 2-Player Board Game (No Download)","url":"https://browsergames.example.com/games/checkers.html","description":"Play Checkers online with two players on the same screen. Free pixel-art browser board game, no download or sign-up.","operatingSystem":"Web Browser","applicationCategory":"Game","genre":"Browser game","author":{"@type":"Organization","name":"BrowserGames Hub","url":"https://browsergames.example.com"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://browsergames.example.com/"},{"@type":"ListItem","position":2,"name":"Game Finder","item":"https://browsergames.example.com/game-finder.html"},{"@type":"ListItem","position":3,"name":"Checkers — Free 2-Player Board Game (No Download)","item":"https://browsergames.example.com/games/checkers.html"}]}]</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="../index.html" aria-label="BrowserGames Hub home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h4M8 9v4"/><circle cx="12" cy="12" r="9"/><path d="M12 12l4-4"/></svg>
+        </span>
+        BrowserGames Hub
+      </a>
+      <nav>
+        <ul class="nav-links" data-nav-links>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../online-games-for-long-distance-couples.html">Couples</a></li>
+          <li><a href="../game-finder.html">Game Finder</a></li>
+          <li><a href="../index.html#guides">Guides</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <section class="article-hero">
+    <div class="container">
+      <nav class="breadcrumb"><a href="../index.html">Home</a> / <a href="../game-finder.html">Game Finder</a> / Checkers</nav>
+      <h1>Pixel Checkers</h1>
+      <p class="article-excerpt">Classic checkers in pixel style. Jump your opponent’s pieces and crown your kings.</p>
+    </div>
+  </section>
+
+  <main class="container game-wrap">
+    
+    <div class="game-hud"><span id="turn">Red goes first</span></div>
+    <div class="ch-board" id="board"></div>
+    <button class="btn-restart" id="restart">Restart</button>
+    <p class="controls-note">Click a piece, then a highlighted square. Jump over pieces to capture. Reach the far row to king.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>© <span data-year>2026</span> BrowserGames Hub. Play instantly, no download.</p>
+      <ul class="footer-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../game-finder.html">Game Finder</a></li>
+        <li><a href="snake.html">Pixel Snake</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>(function(){
+    var board = [];
+    var turn = 'r';
+    var sel = null, over = false;
+    var boardEl = document.getElementById('board');
+    var turnEl = document.getElementById('turn');
+    function init(){
+      board = [];
+      for (var r = 0; r < 8; r++) {
+        board[r] = [];
+        for (var c = 0; c < 8; c++) {
+          if (r < 3 && (r + c) % 2 === 1) board[r][c] = 'b';
+          else if (r > 4 && (r + c) % 2 === 1) board[r][c] = 'r';
+          else board[r][c] = null;
+        }
+      }
+      sel = null; turn = 'r'; over = false; render();
+    }
+    function render(){
+      boardEl.innerHTML = '';
+      for (var r = 0; r < 8; r++) for (var c = 0; c < 8; c++) {
+        var cell = document.createElement('div');
+        cell.className = 'ch-cell' + ((r + c) % 2 === 1 ? ' dark' : '');
+        if (board[r][c]) {
+          var piece = document.createElement('div');
+          piece.className = 'piece ' + (board[r][c][0] === 'r' ? 'r' : 'b') + (board[r][c].length > 1 ? ' king' : '');
+          cell.appendChild(piece);
+        }
+        if (sel && sel.r === r && sel.c === c) cell.classList.add('sel');
+        cell.addEventListener('click', (function(r, c){ return function(){ click(r, c); }; })(r, c));
+        boardEl.appendChild(cell);
+      }
+      turnEl.textContent = over ? (turn === 'r' ? 'Black wins!' : 'Red wins!') : (turn === 'r' ? 'Red' : 'Black') + ' turn';
+    }
+    function movesFor(r, c){
+      var p = board[r][c];
+      if (!p) return [];
+      var dir = p[0] === 'r' ? -1 : 1;
+      var steps = [];
+      function add(rr, cc){ if (rr >= 0 && rr < 8 && cc >= 0 && cc < 8 && !board[rr][cc]) steps.push({r:rr,c:cc}); }
+      function jumps(rr, cc, mr, mc){
+        if (rr >= 0 && rr < 8 && cc >= 0 && cc < 8 && board[rr][cc] && board[rr][cc][0] !== p[0] && mr >= 0 && mr < 8 && mc >= 0 && mc < 8 && !board[mr][mc]) steps.push({r:mr,c:mc,jump:true});
+      }
+      if (p === 'r' || p === 'rk') { add(r-1,c-1); add(r-1,c+1); jumps(r-1,c-1,r-2,c-2); jumps(r-1,c+1,r-2,c+2); }
+      if (p === 'b' || p === 'bk') { add(r+1,c-1); add(r+1,c+1); jumps(r+1,c-1,r+2,c-2); jumps(r+1,c+1,r+2,c+2); }
+      if (p.length > 1) {
+        if (p === 'rk') { add(r+1,c-1); add(r+1,c+1); jumps(r+1,c-1,r+2,c-2); jumps(r+1,c+1,r+2,c+2); }
+        if (p === 'bk') { add(r-1,c-1); add(r-1,c+1); jumps(r-1,c-1,r-2,c-2); jumps(r-1,c+1,r-2,c+2); }
+      }
+      return steps;
+    }
+    function click(r, c){
+      if (over) return;
+      if (sel) {
+        var move = movesFor(sel.r, sel.c).find(function(m){ return m.r === r && m.c === c; });
+        if (move) {
+          board[r][c] = board[sel.r][sel.c];
+          board[sel.r][sel.c] = null;
+          if (move.jump) {
+            var mr = (sel.r + r) / 2, mc = (sel.c + c) / 2;
+            board[mr][mc] = null;
+            if (window.bgSound) bgSound.play('score');
+          } else if (window.bgSound) bgSound.play('flip');
+          if ((r === 0 && board[r][c][0] === 'r') || (r === 7 && board[r][c][0] === 'b')) board[r][c] = board[r][c][0] + 'k';
+          if (board.flat().filter(function(x){ return x && x[0] === 'r'; }).length === 0) over = true;
+          if (board.flat().filter(function(x){ return x && x[0] === 'b'; }).length === 0) over = true;
+          turn = turn === 'r' ? 'b' : 'r';
+          sel = null;
+          render();
+          return;
+        }
+      }
+      if (board[r][c] && board[r][c][0] === turn) { sel = {r:r,c:c}; render(); }
+      else sel = null;
+    }
+    document.getElementById('restart').addEventListener('click', init);
+    init();
+  })();</script>
+</body>
+</html>

@@ -1,0 +1,800 @@
+/* =========================================================================
+   BrowserGames Hub — PIXEL OVERRIDE
+   Pixel-art / retro-game style inspired by pixels.xyz
+   Loads after style.css and replaces the visual language.
+   ========================================================================= */
+
+@import url('style.css');
+
+:root {
+  --bg: #8ed0f5;
+  --bg-soft: #b7e4fa;
+  --surface: #eaf8ff;
+  --surface-2: #cdeeff;
+  --surface-3: #a9e0fa;
+  --border: #3b2e25;
+  --border-strong: #3b2e25;
+
+  --text: #2f251c;
+  --muted: #3f4f38;
+  --muted-2: #4f5f46;
+
+  --primary: #4aa13e;
+  --primary-2: #67c653;
+  --primary-soft: #dbf2d0;
+  --accent: #2f80b8;
+  --accent-soft: #d2eaff;
+  --cta: #ffd23f;
+  --cta-text: #3b2e25;
+  --positive: #4aa13e;
+  --danger: #e05a4e;
+
+  --radius-sm: 0px;
+  --radius: 0px;
+  --radius-lg: 0px;
+
+  --shadow: 4px 4px 0 #3b2e25;
+  --shadow-lg: 7px 7px 0 #3b2e25;
+
+  --font-display: "Press Start 2P", "Pixelify Sans", monospace;
+  --font-body: "Pixelify Sans", "Inter", monospace;
+}
+
+* {
+  border-radius: 0 !important;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-size: 18px;
+  image-rendering: pixelated;
+}
+
+/* darker, readable body/card text on the light sky-blue surface */
+.hero p,
+.bento-card p,
+.post-card p,
+.article-excerpt,
+.mini-item span,
+.finder-item p,
+.game-card p,
+.faq-item p,
+.side-card li a,
+.prose p,
+.prose li {
+  color: var(--text);
+  opacity: 0.92;
+}
+
+h1, h2, h3, h4, .brand, .btn, .chip, .post-tag, .mini-rank, .bento-link, .finder-tags span, .game-label {
+  font-family: var(--font-display);
+}
+
+/* ---------- Pixel blocks ---------- */
+
+.site-header {
+  background: var(--bg-soft);
+  border-bottom: 4px solid var(--border);
+  backdrop-filter: none;
+}
+
+.nav {
+  height: 72px;
+}
+
+.brand {
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+}
+
+.brand-mark {
+  border: 3px solid var(--border);
+  box-shadow: 2px 2px 0 var(--border);
+}
+
+.nav-links a {
+  border: 2px solid transparent;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+}
+
+.nav-links a:hover {
+  border-color: var(--border);
+  box-shadow: 2px 2px 0 var(--border);
+  background: var(--surface-2);
+}
+
+.nav-links a.active {
+  background: var(--cta);
+  border-color: var(--border);
+  box-shadow: 2px 2px 0 var(--border);
+  color: var(--cta-text);
+}
+
+.nav-cta {
+  border: 3px solid var(--border);
+  box-shadow: 3px 3px 0 var(--border);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 64px 0 56px;
+  background:
+    linear-gradient(rgba(59, 46, 37, 0.10) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(59, 46, 37, 0.10) 2px, transparent 2px),
+    var(--bg);
+  background-size: 28px 28px;
+}
+
+/* pixel clouds drifting across the sky */
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  width: 16px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow:
+    16px 0 0 0 rgba(255, 255, 255, 0.95),
+    32px 0 0 0 rgba(255, 255, 255, 0.95),
+    8px -16px 0 0 rgba(255, 255, 255, 0.95),
+    24px -16px 0 0 rgba(255, 255, 255, 0.95);
+  animation: cloud-drift linear infinite;
+}
+
+.hero::before {
+  top: 34px;
+  left: -90px;
+  --cloud-scale: 1;
+  animation-duration: 38s;
+}
+
+.hero::after {
+  top: 110px;
+  left: -160px;
+  --cloud-scale: 0.65;
+  animation-duration: 52s;
+  animation-delay: -18s;
+  opacity: 0.85;
+}
+
+.hero h1 {
+  font-size: clamp(1.15rem, 3.2vw, 2rem);
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow:
+    3px 3px 0 var(--border),
+    -2px 2px 0 var(--border),
+    2px -2px 0 var(--border),
+    -2px -2px 0 var(--border);
+}
+
+.hero h1 .accent {
+  color: var(--cta);
+  text-shadow:
+    3px 3px 0 var(--border),
+    -2px 2px 0 var(--border),
+    2px -2px 0 var(--border),
+    -2px -2px 0 var(--border);
+}
+
+.hero h1::after {
+  content: "_";
+  color: var(--cta);
+  animation: blink 1s steps(1) infinite;
+}
+
+.hero p {
+  font-size: 1.05rem;
+}
+
+@keyframes cloud-drift {
+  from { transform: translateX(0) scale(var(--cloud-scale, 1)); }
+  to   { transform: translateX(120vw) scale(var(--cloud-scale, 1)); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  border: 3px solid var(--border);
+  box-shadow: 4px 4px 0 var(--border);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  transition: none;
+  padding: 13px 18px;
+}
+
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--border);
+}
+
+.btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--border);
+}
+
+.btn-primary {
+  background: var(--cta);
+  color: var(--cta-text);
+}
+
+.btn-ghost {
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* ---------- Cards / bento / posts ---------- */
+
+.card,
+.post-card,
+.hero-card,
+.mini-item,
+.side-card,
+.game-card,
+.faq-item,
+.tool-cta,
+.finder-item {
+  border: 3px solid var(--border);
+  box-shadow: var(--shadow);
+  background: var(--surface);
+}
+
+.card:hover,
+.post-card:hover,
+.mini-item:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.hero-card h2 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.mini-item {
+  background: var(--surface-2);
+}
+
+.mini-rank {
+  border: 2px solid var(--border);
+  box-shadow: 2px 2px 0 var(--border);
+  background: var(--primary);
+  color: #fff;
+  border-radius: 0;
+}
+
+.bento-card h3 {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.bento-card p {
+  font-size: 1rem;
+}
+
+.bento-icon {
+  border: 3px solid var(--border);
+  box-shadow: 2px 2px 0 var(--border);
+  background: var(--primary-soft);
+}
+
+.bento-link {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+/* ---------- Article cards ---------- */
+
+.post-tag {
+  display: inline-block;
+  background: var(--primary-soft);
+  border: 2px solid var(--border);
+  padding: 3px 7px;
+  font-size: 0.52rem;
+  color: var(--primary);
+}
+
+.post-card h3 {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.post-card p {
+  font-size: 0.98rem;
+}
+
+.post-meta {
+  font-family: var(--font-display);
+  font-size: 0.5rem;
+}
+
+/* ---------- Article page ---------- */
+
+.article-hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 4px solid var(--border);
+  background:
+    linear-gradient(rgba(59, 46, 37, 0.09) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(59, 46, 37, 0.09) 2px, transparent 2px),
+    var(--bg-soft);
+  background-size: 28px 28px;
+}
+
+.article-hero::before {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  top: 24px;
+  right: -90px;
+  width: 16px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    -16px 0 0 0 rgba(255, 255, 255, 0.9),
+    -32px 0 0 0 rgba(255, 255, 255, 0.9),
+    -8px -16px 0 0 rgba(255, 255, 255, 0.9),
+    -24px -16px 0 0 rgba(255, 255, 255, 0.9);
+  animation: cloud-drift 45s linear infinite reverse;
+}
+
+.article-hero h1 {
+  font-size: clamp(1rem, 3vw, 1.8rem);
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow:
+    3px 3px 0 var(--border),
+    -2px 2px 0 var(--border),
+    2px -2px 0 var(--border),
+    -2px -2px 0 var(--border);
+}
+
+.article-excerpt {
+  font-size: 1.05rem;
+}
+
+.article-meta {
+  font-family: var(--font-display);
+  font-size: 0.55rem;
+  text-transform: uppercase;
+}
+
+.prose h2 {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  border-left: 8px solid var(--cta);
+  padding-left: 12px;
+}
+
+.prose h3 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.prose p,
+.prose li {
+  font-size: 1.02rem;
+}
+
+.table-wrap {
+  border: 3px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.prose th {
+  font-family: var(--font-display);
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  background: var(--surface-3);
+  color: var(--text);
+}
+
+.prose td {
+  font-size: 0.98rem;
+  color: var(--text);
+  opacity: 0.94;
+}
+
+.prose tr:nth-child(even) td {
+  background: var(--surface);
+}
+
+.game-card h4 {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.game-label {
+  border: 2px solid var(--border);
+  background: var(--accent-soft);
+  color: var(--text);
+  padding: 3px 6px;
+  font-size: 0.5rem;
+}
+
+.game-card a {
+  color: var(--primary);
+}
+
+.side-card h3 {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+}
+
+.side-card li a {
+  font-size: 0.98rem;
+}
+
+.faq-item h3 {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.faq-item p {
+  font-size: 0.98rem;
+}
+
+/* ---------- Game finder ---------- */
+
+.chip {
+  border: 3px solid var(--border);
+  box-shadow: 2px 2px 0 var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.58rem;
+  text-transform: uppercase;
+}
+
+.chip:hover {
+  background: var(--surface-2);
+}
+
+.chip.active {
+  background: var(--primary);
+  color: #fff;
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 var(--border);
+}
+
+.finder-item h3 {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.finder-tags span {
+  border: 2px solid var(--border);
+  background: var(--accent-soft);
+  color: var(--text);
+  font-size: 0.48rem;
+}
+
+.finder-item a {
+  color: var(--primary);
+}
+
+/* ---------- Dynamic pixel UI ---------- */
+
+.brand-mark {
+  animation: float-bob 2.4s steps(2) infinite;
+}
+
+.bento-icon {
+  animation: float-bob 2s steps(2) infinite;
+}
+
+.hero-card {
+  animation: float-bob 3.2s steps(2) infinite;
+}
+
+.card:hover,
+.post-card:hover,
+.mini-item:hover,
+.game-card:hover,
+.finder-item:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.chip {
+  transition: transform 0.08s steps(2), background 0.08s steps(2);
+}
+
+@keyframes float-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  position: relative;
+  border-top: 4px solid var(--border);
+  background: var(--bg-soft);
+}
+
+/* animated pixel grass strip */
+.site-footer::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  image-rendering: pixelated;
+  background:
+    linear-gradient(135deg, transparent 5px, var(--primary) 0) 0 0 / 10px 10px repeat-x,
+    linear-gradient(45deg, transparent 5px, var(--primary-2) 0) 0 0 / 10px 10px repeat-x;
+  animation: grass-wave 0.6s steps(2) infinite;
+}
+
+@keyframes grass-wave {
+  0% { background-position: 0 0, 0 0; }
+  50% { background-position: 5px 0, -5px 0; }
+  100% { background-position: 10px 0, 0 0; }
+}
+
+.footer-links a {
+  font-family: var(--font-display);
+  font-size: 0.55rem;
+  text-transform: uppercase;
+}
+
+/* ---------- Pixel butterfly ---------- */
+
+.pixel-butterfly {
+  position: absolute;
+  top: 18%;
+  left: 8%;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  z-index: 6;
+  animation: butterfly-path 18s ease-in-out infinite alternate;
+}
+
+.pixel-butterfly .wing {
+  position: absolute;
+  top: 0;
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--border);
+  image-rendering: pixelated;
+}
+
+.pixel-butterfly .wing.l {
+  left: -2px;
+  background: var(--cta);
+  transform-origin: 100% 50%;
+  animation: flap-l 0.5s steps(2) infinite;
+}
+
+.pixel-butterfly .wing.r {
+  right: -2px;
+  background: var(--accent);
+  transform-origin: 0 50%;
+  animation: flap-r 0.5s steps(2) infinite;
+}
+
+@keyframes flap-l {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(0.25); }
+}
+
+@keyframes flap-r {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(0.25); }
+}
+
+@keyframes butterfly-path {
+  0%   { transform: translate(0, 0); }
+  20%  { transform: translate(70px, -24px); }
+  40%  { transform: translate(140px, 14px); }
+  60%  { transform: translate(210px, -20px); }
+  80%  { transform: translate(280px, 10px); }
+  100% { transform: translate(340px, -14px); }
+}
+
+/* ---------- Pixel walking slime ---------- */
+
+.pixel-slime {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  pointer-events: none;
+  z-index: 6;
+  background: transparent;
+  box-shadow:
+    4px 0 0 0 var(--primary), 8px 0 0 0 var(--primary), 12px 0 0 0 var(--primary), 16px 0 0 0 var(--primary),
+    0 4px 0 0 var(--primary), 4px 4px 0 0 #ffffff, 8px 4px 0 0 var(--border), 12px 4px 0 0 #ffffff, 16px 4px 0 0 var(--border), 20px 4px 0 0 var(--primary),
+    0 8px 0 0 var(--primary), 4px 8px 0 0 var(--primary), 8px 8px 0 0 var(--primary), 12px 8px 0 0 var(--primary), 16px 8px 0 0 var(--primary), 20px 8px 0 0 var(--primary),
+    4px 12px 0 0 #2f6b28, 16px 12px 0 0 #2f6b28;
+  animation: slime-walk 24s linear infinite;
+}
+
+@keyframes slime-walk {
+  0%   { transform: translateX(-60px) translateY(0); }
+  8%   { transform: translateX(6vw) translateY(-3px); }
+  16%  { transform: translateX(14vw) translateY(0); }
+  24%  { transform: translateX(22vw) translateY(-3px); }
+  32%  { transform: translateX(30vw) translateY(0); }
+  40%  { transform: translateX(38vw) translateY(-3px); }
+  48%  { transform: translateX(46vw) translateY(0); }
+  56%  { transform: translateX(54vw) translateY(-3px); }
+  64%  { transform: translateX(62vw) translateY(0); }
+  72%  { transform: translateX(70vw) translateY(-3px); }
+  80%  { transform: translateX(78vw) translateY(0); }
+  88%  { transform: translateX(86vw) translateY(-3px); }
+  100% { transform: translateX(104vw) translateY(0); }
+}
+
+/* ---------- Button particles ---------- */
+
+.btn,
+.chip {
+  position: relative;
+}
+
+.btn-particle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  background: var(--cta);
+  border: 1px solid var(--border);
+  pointer-events: none;
+  z-index: 20;
+  image-rendering: pixelated;
+  animation: particle-fly 0.6s steps(5) forwards;
+}
+
+@keyframes particle-fly {
+  0%   { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(0.25); opacity: 0; }
+}
+
+/* ---------- Sound toggle ---------- */
+
+.sound-toggle {
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  z-index: 99;
+  background: var(--surface);
+  border: 3px solid var(--border);
+  box-shadow: 3px 3px 0 var(--border);
+  font-family: var(--font-display);
+  font-size: 0.52rem;
+  text-transform: uppercase;
+  padding: 10px 12px;
+  cursor: pointer;
+  color: var(--text);
+}
+
+.sound-toggle:hover {
+  background: var(--surface-2);
+}
+
+.sound-toggle.off {
+  background: var(--danger);
+  color: #fff;
+}
+
+/* ---------- Quick-play widget (homepage random game) ---------- */
+
+.quick-play-frame {
+  position: relative;
+  border: 4px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  background: var(--surface);
+  padding: 12px;
+}
+
+.quick-play-frame iframe {
+  display: block;
+  width: 100%;
+  height: 700px;
+  border: 0;
+  background: #10200f;
+}
+
+.quick-overlay {
+  position: absolute;
+  inset: 12px;
+  background: rgba(16, 32, 15, 0.88);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 5;
+  text-align: center;
+  padding: 20px;
+}
+
+.quick-overlay.hide {
+  display: none;
+}
+
+.quick-overlay p {
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  line-height: 1.6;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.quick-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+/* ---------- Embed mode for game pages inside iframes ---------- */
+
+.embed-mode .site-header,
+.embed-mode .site-footer,
+.embed-mode .article-hero {
+  display: none !important;
+}
+
+.embed-mode .game-wrap {
+  padding: 10px 0 20px;
+}
+
+/* ---------- Heart lives UI ---------- */
+
+.hearts {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.hearts svg {
+  display: block;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+  .nav-links {
+    border: 3px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+
+  .nav-links a {
+    border: 2px solid transparent;
+  }
+
+  .quick-play-frame iframe {
+    height: 640px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}

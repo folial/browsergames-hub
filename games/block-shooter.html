@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en" data-seo-applied>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Block Shooter — Free Pixel Target Game (No Download)</title>
+  <meta name="description" content="Play Block Shooter online. Shoot moving pixel blocks in 30 seconds. Free browser game, no download." />
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/pixel.css" />
+  <style>
+  .game-wrap { display:grid; justify-items:center; gap:16px; padding:28px 0 50px; }
+  .game-frame { background:var(--surface); border:4px solid var(--border); box-shadow:var(--shadow-lg); padding:12px; }
+  canvas { display:block; width:min(82vw, 620px); height:auto; image-rendering:pixelated; background:#10200f; cursor:pointer; }
+  .game-hud { display:flex; justify-content:space-between; gap:14px; width:min(82vw, 620px); font-family:var(--font-display); font-size:0.6rem; text-transform:uppercase; flex-wrap:wrap; }
+  .game-hud span { background:var(--surface-2); border:2px solid var(--border); box-shadow:2px 2px 0 var(--border); padding:8px 10px; }
+  .controls-note { max-width:500px; text-align:center; color:var(--text); opacity:0.92; font-size:1rem; }
+  .btn-restart { border:3px solid var(--border); box-shadow:4px 4px 0 var(--border); background:var(--cta); color:var(--cta-text); font-family:var(--font-display); font-size:0.62rem; text-transform:uppercase; padding:12px 16px; cursor:pointer; }
+  .btn-restart:active { transform:translate(3px,3px); box-shadow:0 0 0 var(--border); }
+</style>
+
+  <link rel="canonical" href="https://browsergames.example.com/games/block-shooter.html" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BrowserGames Hub" />
+  <meta property="og:title" content="Block Shooter — Free Pixel Target Game (No Download)" />
+  <meta property="og:description" content="Play Block Shooter online. Shoot moving pixel blocks in 30 seconds. Free browser game, no download." />
+  <meta property="og:url" content="https://browsergames.example.com/games/block-shooter.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Block Shooter — Free Pixel Target Game (No Download)" />
+  <meta name="twitter:description" content="Play Block Shooter online. Shoot moving pixel blocks in 30 seconds. Free browser game, no download." />
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"VideoGame","name":"Block Shooter — Free Pixel Target Game (No Download)","url":"https://browsergames.example.com/games/block-shooter.html","description":"Play Block Shooter online. Shoot moving pixel blocks in 30 seconds. Free browser game, no download.","operatingSystem":"Web Browser","applicationCategory":"Game","genre":"Browser game","author":{"@type":"Organization","name":"BrowserGames Hub","url":"https://browsergames.example.com"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://browsergames.example.com/"},{"@type":"ListItem","position":2,"name":"Game Finder","item":"https://browsergames.example.com/game-finder.html"},{"@type":"ListItem","position":3,"name":"Block Shooter — Free Pixel Target Game (No Download)","item":"https://browsergames.example.com/games/block-shooter.html"}]}]</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="../index.html" aria-label="BrowserGames Hub home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h4M8 9v4"/><circle cx="12" cy="12" r="9"/><path d="M12 12l4-4"/></svg>
+        </span>
+        BrowserGames Hub
+      </a>
+      <nav>
+        <ul class="nav-links" data-nav-links>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../online-games-for-long-distance-couples.html">Couples</a></li>
+          <li><a href="../game-finder.html">Game Finder</a></li>
+          <li><a href="../index.html#guides">Guides</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <section class="article-hero">
+    <div class="container">
+      <nav class="breadcrumb"><a href="../index.html">Home</a> / <a href="../game-finder.html">Game Finder</a> / Block Shooter</nav>
+      <h1>Block Shooter</h1>
+      <p class="article-excerpt">A Krunker-style target range: fast crosshair shooting against moving pixel blocks.</p>
+    </div>
+  </section>
+
+  <main class="container game-wrap">
+    
+      <div class="game-hud"><span>Score: <b id="score">0</b></span><span>Time: <b id="time">30</b></span></div>
+      <div class="game-frame"><canvas id="game" width="620" height="360"></canvas></div>
+      <button class="btn-restart" id="restart">Restart</button>
+      <p class="controls-note">Move the crosshair with your mouse or finger, then click / tap to shoot the targets before time runs out.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>© <span data-year>2026</span> BrowserGames Hub. Play instantly, no download.</p>
+      <ul class="footer-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../game-finder.html">Game Finder</a></li>
+        <li><a href="snake.html">Pixel Snake</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>(function(){
+      var canvas = document.getElementById('game');
+      var ctx = canvas.getContext('2d');
+      var W = canvas.width, H = canvas.height;
+      var score = 0, timeLeft = 30, running = true;
+      var targets = [];
+      var cross = { x: W/2, y: H/2 };
+      var scoreEl = document.getElementById('score');
+      var timeEl = document.getElementById('time');
+      function spawn(){
+        if (targets.length < 5) {
+          targets.push({ x: Math.random() * (W - 40) + 20, y: Math.random() * (H - 100) + 30, vx: (Math.random() * 2 - 1) * 1.4, vy: (Math.random() * 2 - 1) * 1.4, r: 16 });
+        }
+      }
+      function step(){
+        if (window.bgPaused) return;
+        if (!running) return;
+        targets.forEach(function(t){ t.x += t.vx; t.y += t.vy; if (t.x < 10 || t.x > W - 10) t.vx = -t.vx; if (t.y < 10 || t.y > H - 10) t.vy = -t.vy; });
+        spawn();
+        draw();
+      }
+      function draw(){
+        ctx.fillStyle = '#10200f'; ctx.fillRect(0, 0, W, H);
+        targets.forEach(function(t){
+          ctx.fillStyle = '#67c653';
+          if ('block' === 'egg') { ctx.fillRect(t.x - 10, t.y - 12, 20, 24); ctx.fillStyle = '#fff'; ctx.fillRect(t.x - 4, t.y - 4, 8, 10); }
+          else { ctx.fillRect(t.x - 12, t.y - 12, 24, 24); ctx.fillStyle = '#fff'; ctx.fillRect(t.x - 4, t.y - 4, 8, 8); }
+        });
+        ctx.strokeStyle = '#ffd23f'; ctx.lineWidth = 2;
+        ctx.strokeRect(cross.x - 8, cross.y, 16, 0); ctx.strokeRect(cross.x, cross.y - 8, 0, 16);
+        if (!running) {
+          ctx.fillStyle = 'rgba(0,0,0,0.55)'; ctx.fillRect(0, 0, W, H);
+          ctx.fillStyle = '#fff'; ctx.font = '18px "Press Start 2P", monospace'; ctx.textAlign = 'center';
+          ctx.fillText('TIME UP', W/2, H/2);
+          ctx.font = '11px "Press Start 2P", monospace';
+          ctx.fillText('Score: ' + score, W/2, H/2 + 30);
+        }
+      }
+      function shoot(x, y){
+        if (!running) return;
+        if (window.bgSound) bgSound.play('bounce');
+        for (var i = targets.length - 1; i >= 0; i--) {
+          var t = targets[i];
+          if (Math.abs(x - t.x) < 22 && Math.abs(y - t.y) < 22) {
+            targets.splice(i, 1); score += 5; scoreEl.textContent = String(score); if (window.bgSound) bgSound.play('score');
+            return;
+          }
+        }
+      }
+      canvas.addEventListener('mousemove', function(e){ var r = canvas.getBoundingClientRect(); cross.x = (e.clientX - r.left) * (W / r.width); cross.y = (e.clientY - r.top) * (H / r.height); });
+      canvas.addEventListener('click', function(e){ var r = canvas.getBoundingClientRect(); shoot((e.clientX - r.left) * (W / r.width), (e.clientY - r.top) * (H / r.height)); });
+      canvas.addEventListener('touchstart', function(e){ e.preventDefault(); var r = canvas.getBoundingClientRect(); cross.x = (e.touches[0].clientX - r.left) * (W / r.width); cross.y = (e.touches[0].clientY - r.top) * (H / r.height); shoot(cross.x, cross.y); }, { passive: false });
+      document.getElementById('restart').addEventListener('click', function(){ score = 0; timeLeft = 30; running = true; targets = []; scoreEl.textContent = '0'; timeEl.textContent = '30'; });
+      setInterval(step, 16);
+      setInterval(function(){ if (window.bgPaused) return; if (running) { timeLeft--; timeEl.textContent = String(Math.max(0, timeLeft)); if (timeLeft <= 0) { running = false; if (window.bgSound) bgSound.play('over'); } } }, 1000);
+      draw();
+    })();</script>
+</body>
+</html>

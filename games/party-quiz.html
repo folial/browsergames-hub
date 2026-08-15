@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en" data-seo-applied>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pixel Party Quiz — Free Party Game (No Download)</title>
+  <meta name="description" content="Play Pixel Party Quiz online. Fun quick-fire questions for friends and family. Free browser party game, no download." />
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/pixel.css" />
+  <style>
+  .game-wrap { display:grid; justify-items:center; gap:16px; padding:28px 0 50px; }
+  .game-frame { background:var(--surface); border:4px solid var(--border); box-shadow:var(--shadow-lg); padding:12px; }
+  canvas { display:block; width:min(82vw, 620px); height:auto; image-rendering:pixelated; background:#10200f; cursor:pointer; }
+  .game-hud { display:flex; justify-content:space-between; gap:14px; width:min(82vw, 620px); font-family:var(--font-display); font-size:0.6rem; text-transform:uppercase; flex-wrap:wrap; }
+  .game-hud span { background:var(--surface-2); border:2px solid var(--border); box-shadow:2px 2px 0 var(--border); padding:8px 10px; }
+  .controls-note { max-width:500px; text-align:center; color:var(--text); opacity:0.92; font-size:1rem; }
+  .btn-restart { border:3px solid var(--border); box-shadow:4px 4px 0 var(--border); background:var(--cta); color:var(--cta-text); font-family:var(--font-display); font-size:0.62rem; text-transform:uppercase; padding:12px 16px; cursor:pointer; }
+  .btn-restart:active { transform:translate(3px,3px); box-shadow:0 0 0 var(--border); }
+
+    .quiz-box { max-width:560px; width:100%; background:var(--surface); border:4px solid var(--border); box-shadow:var(--shadow-lg); padding:18px; text-align:center; }
+    .quiz-q { font-family:var(--font-display); font-size:0.75rem; line-height:1.6; text-transform:uppercase; }
+    .quiz-answers { display:grid; gap:10px; margin-top:16px; }
+    .quiz-a { border:3px solid var(--border); box-shadow:3px 3px 0 var(--border); background:var(--surface-2); font-family:var(--font-body); font-size:1rem; padding:12px; cursor:pointer; }
+    .quiz-a.correct { background:var(--positive); color:#fff; }
+    .quiz-a.wrong { background:var(--danger); color:#fff; }
+  </style>
+
+  <link rel="canonical" href="https://browsergames.example.com/games/party-quiz.html" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BrowserGames Hub" />
+  <meta property="og:title" content="Pixel Party Quiz — Free Party Game (No Download)" />
+  <meta property="og:description" content="Play Pixel Party Quiz online. Fun quick-fire questions for friends and family. Free browser party game, no download." />
+  <meta property="og:url" content="https://browsergames.example.com/games/party-quiz.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Pixel Party Quiz — Free Party Game (No Download)" />
+  <meta name="twitter:description" content="Play Pixel Party Quiz online. Fun quick-fire questions for friends and family. Free browser party game, no download." />
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"VideoGame","name":"Pixel Party Quiz — Free Party Game (No Download)","url":"https://browsergames.example.com/games/party-quiz.html","description":"Play Pixel Party Quiz online. Fun quick-fire questions for friends and family. Free browser party game, no download.","operatingSystem":"Web Browser","applicationCategory":"Game","genre":"Browser game","author":{"@type":"Organization","name":"BrowserGames Hub","url":"https://browsergames.example.com"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://browsergames.example.com/"},{"@type":"ListItem","position":2,"name":"Game Finder","item":"https://browsergames.example.com/game-finder.html"},{"@type":"ListItem","position":3,"name":"Party Quiz — Free Party Game (No Download)","item":"https://browsergames.example.com/games/party-quiz.html"}]}]</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="../index.html" aria-label="BrowserGames Hub home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h4M8 9v4"/><circle cx="12" cy="12" r="9"/><path d="M12 12l4-4"/></svg>
+        </span>
+        BrowserGames Hub
+      </a>
+      <nav>
+        <ul class="nav-links" data-nav-links>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../online-games-for-long-distance-couples.html">Couples</a></li>
+          <li><a href="../game-finder.html">Game Finder</a></li>
+          <li><a href="../index.html#guides">Guides</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <section class="article-hero">
+    <div class="container">
+      <nav class="breadcrumb"><a href="../index.html">Home</a> / <a href="../game-finder.html">Game Finder</a> / Party Quiz</nav>
+      <h1>Pixel Party Quiz</h1>
+      <p class="article-excerpt">Quick-fire trivia for game nights. Answer ten fun questions and see how many you can get right.</p>
+    </div>
+  </section>
+
+  <main class="container game-wrap">
+    
+    <div class="game-hud"><span id="progress">1 / 10</span><span id="score">Score: 0</span></div>
+    <div class="quiz-box">
+      <div class="quiz-q" id="q"></div>
+      <div class="quiz-answers" id="answers"></div>
+    </div>
+    <button class="btn-restart" id="restart">Restart</button>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>© <span data-year>2026</span> BrowserGames Hub. Play instantly, no download.</p>
+      <ul class="footer-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../game-finder.html">Game Finder</a></li>
+        <li><a href="snake.html">Pixel Snake</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>(function(){
+    var quiz = [
+      { q: 'Which game is about an egg with guns?', a: ['Shell Shockers', 'Minecraft', 'Tetris'], correct: 0 },
+      { q: 'What does .io mean in browser games?', a: ['Inside Online', 'Internet Organism', 'Indian Ocean'], correct: 2 },
+      { q: 'Which classic game is played on an 8x8 board with black and white pieces?', a: ['Chess', 'Checkers', 'Snakes and Ladders'], correct: 0 },
+      { q: 'What is the goal of 2048?', a: ['Clear all blocks', 'Reach the 2048 tile', 'Collect coins'], correct: 1 },
+      { q: 'Which fruit did the original Snake eat?', a: ['Banana', 'Apple', 'Cherry'], correct: 1 },
+      { q: 'What is the name of the blocky browser FPS with classes?', a: ['Krunker.io', 'Venge.io', 'Slope'], correct: 0 },
+      { q: 'In Pong, what shape is the ball?', a: ['Triangle', 'Square', 'Circle'], correct: 1 },
+      { q: 'Which game asks you to repeat a color pattern?', a: ['Simon Says', 'Memory Match', 'Both'], correct: 2 },
+      { q: 'What does a red heart usually mean in a game HUD?', a: ['Score', 'A life', 'Speed'], correct: 1 },
+      { q: 'Which animal is Flappy Pixel?', a: ['A fish', 'A bird', 'A frog'], correct: 1 }
+    ];
+    var i = 0, score = 0;
+    var qEl = document.getElementById('q');
+    var aEl = document.getElementById('answers');
+    var progEl = document.getElementById('progress');
+    var scoreEl = document.getElementById('score');
+    function load(){
+      if (i >= quiz.length) { qEl.textContent = 'Game over! You scored ' + score + ' / ' + quiz.length; aEl.innerHTML = ''; return; }
+      var item = quiz[i];
+      qEl.textContent = item.q;
+      progEl.textContent = (i + 1) + ' / ' + quiz.length;
+      aEl.innerHTML = '';
+      item.a.forEach(function(ans, idx){
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'quiz-a'; b.textContent = ans;
+        b.addEventListener('click', function(){
+          Array.prototype.forEach.call(aEl.children, function(x, j){ if (j === item.correct) x.classList.add('correct'); });
+          if (idx === item.correct) { score++; scoreEl.textContent = 'Score: ' + score; if (window.bgSound) bgSound.play('match'); }
+          else { b.classList.add('wrong'); if (window.bgSound) bgSound.play('hurt'); }
+          i++; setTimeout(load, 900);
+        });
+        aEl.appendChild(b);
+      });
+    }
+    document.getElementById('restart').addEventListener('click', function(){ i = 0; score = 0; scoreEl.textContent = 'Score: 0'; load(); });
+    load();
+  })();</script>
+</body>
+</html>

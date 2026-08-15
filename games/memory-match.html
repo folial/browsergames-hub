@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en" data-seo-applied>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pixel Memory Match — Free Pair-Matching Game (No Download)</title>
+  <meta name="description" content="Play Memory Match online. Flip pixel-art cards and match all 8 pairs in as few moves as possible. Free browser game, no download." />
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/pixel.css" />
+  <style>
+  .game-wrap { display:grid; justify-items:center; gap:16px; padding:28px 0 50px; }
+  .game-frame { background:var(--surface); border:4px solid var(--border); box-shadow:var(--shadow-lg); padding:12px; }
+  canvas { display:block; width:min(82vw, 620px); height:auto; image-rendering:pixelated; background:#10200f; cursor:pointer; }
+  .game-hud { display:flex; justify-content:space-between; gap:14px; width:min(82vw, 620px); font-family:var(--font-display); font-size:0.6rem; text-transform:uppercase; flex-wrap:wrap; }
+  .game-hud span { background:var(--surface-2); border:2px solid var(--border); box-shadow:2px 2px 0 var(--border); padding:8px 10px; }
+  .controls-note { max-width:480px; text-align:center; color:var(--text); opacity:0.92; font-size:1rem; }
+  .btn-restart { border:3px solid var(--border); box-shadow:4px 4px 0 var(--border); background:var(--cta); color:var(--cta-text); font-family:var(--font-display); font-size:0.62rem; text-transform:uppercase; padding:12px 16px; cursor:pointer; }
+  .btn-restart:active { transform:translate(3px,3px); box-shadow:0 0 0 var(--border); }
+
+    .memory-grid { display:grid; grid-template-columns:repeat(4, 76px); gap:12px; justify-content:center; }
+    .card { height:88px; background:var(--surface-2); border:3px solid var(--border); box-shadow:3px 3px 0 var(--border); cursor:pointer; position:relative; padding:0; }
+    .card .back { display:none; align-items:center; justify-content:center; height:100%; }
+    .card.flipped .back { display:flex; }
+    .card.flipped { background:var(--surface); }
+    .card.matched { background:var(--primary-soft); }
+    @media (max-width:480px){ .memory-grid { grid-template-columns:repeat(4, 1fr); gap:8px; } .card { height:74px; } }
+  </style>
+
+  <link rel="canonical" href="https://browsergames.example.com/games/memory-match.html" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BrowserGames Hub" />
+  <meta property="og:title" content="Pixel Memory Match — Free Pair-Matching Game (No Download)" />
+  <meta property="og:description" content="Play Memory Match online. Flip pixel-art cards and match all 8 pairs in as few moves as possible. Free browser game, no download." />
+  <meta property="og:url" content="https://browsergames.example.com/games/memory-match.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Pixel Memory Match — Free Pair-Matching Game (No Download)" />
+  <meta name="twitter:description" content="Play Memory Match online. Flip pixel-art cards and match all 8 pairs in as few moves as possible. Free browser game, no download." />
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"VideoGame","name":"Pixel Memory Match — Free Pair-Matching Game (No Download)","url":"https://browsergames.example.com/games/memory-match.html","description":"Play Memory Match online. Flip pixel-art cards and match all 8 pairs in as few moves as possible. Free browser game, no download.","operatingSystem":"Web Browser","applicationCategory":"Game","genre":"Browser game","author":{"@type":"Organization","name":"BrowserGames Hub","url":"https://browsergames.example.com"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://browsergames.example.com/"},{"@type":"ListItem","position":2,"name":"Game Finder","item":"https://browsergames.example.com/game-finder.html"},{"@type":"ListItem","position":3,"name":"Memory Match — Free Pair-Matching Game (No Download)","item":"https://browsergames.example.com/games/memory-match.html"}]}]</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="../index.html" aria-label="BrowserGames Hub home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h4M8 9v4"/><circle cx="12" cy="12" r="9"/><path d="M12 12l4-4"/></svg>
+        </span>
+        BrowserGames Hub
+      </a>
+      <nav>
+        <ul class="nav-links" data-nav-links>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../online-games-for-long-distance-couples.html">Couples</a></li>
+          <li><a href="../game-finder.html">Game Finder</a></li>
+          <li><a href="../index.html#guides">Guides</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <section class="article-hero">
+    <div class="container">
+      <nav class="breadcrumb"><a href="../index.html">Home</a> / <a href="../game-finder.html">Game Finder</a> / Memory Match</nav>
+      <h1>Memory Match</h1>
+      <p class="article-excerpt">Flip the pixel cards and match all eight pairs. A classic brain warm-up in retro style, with a move counter and instant restart.</p>
+    </div>
+  </section>
+
+  <main class="container game-wrap">
+    
+    <div class="game-hud"><span>Moves: <b id="moves">0</b></span><span id="msg">Match all 8 pairs!</span></div>
+    <div id="grid" class="memory-grid"></div>
+    <button class="btn-restart" id="restart">Restart</button>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>© <span data-year>2026</span> BrowserGames Hub. Play instantly, no download.</p>
+      <ul class="footer-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../game-finder.html">Game Finder</a></li>
+        <li><a href="snake.html">Pixel Snake</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>(function(){
+    var grid = document.getElementById('grid');
+    var movesEl = document.getElementById('moves');
+    var msgEl = document.getElementById('msg');
+    var restart = document.getElementById('restart');
+    var icons = [
+      '<svg viewBox="0 0 16 16" shape-rendering="crispEdges" width="36" height="36"><rect x="3" y="3" width="10" height="8" fill="#e05a4e"/><rect x="5" y="5" width="2" height="2" fill="#fff"/><rect x="9" y="5" width="2" height="2" fill="#fff"/><rect x="7" y="9" width="2" height="2" fill="#e05a4e"/></svg>',
+      '<svg viewBox="0 0 16 16" shape-rendering="crispEdges" width="36" height="36"><rect x="7" y="1" width="2" height="14" fill="#ffd23f"/><rect x="3" y="3" width="10" height="10" fill="#ffd23f"/><rect x="7" y="3" width="2" height="10" fill="#fff8e1"/><rect x="3" y="7" width="10" height="2" fill="#fff8e1"/></svg>',
+      '<svg viewBox="0 0 16 16" shape-rendering="crispEdges" width="36" height="36"><rect x="5" y="2" width="6" height="5" fill="#e05a4e"/><rect x="4" y="6" width="8" height="2" fill="#3b2e25"/><rect x="6" y="8" width="4" height="6" fill="#f7ecc9"/><rect x="5" y="3" width="2" height="2" fill="#fff"/></svg>',
+      '<svg viewBox="0 0 16 16" shape-rendering="crispEdges" width="36" height="36"><rect x="6" y="2" width="4" height="12" fill="#9aa7bd"/><rect x="4" y="12" width="8" height="2" fill="#6f7d98"/><rect x="3" y="1" width="2" height="3" fill="#9aa7bd"/><rect x="11" y="1" width="2" height="3" fill="#9aa7bd"/></svg>',
+      '<svg viewBox="0 0 16 16" shape-rendering="crispEdges" width="36" height="36"><rect x="3" y="4" width="10" height="8" fill="#ffb703"/><rect x="7" y="4" width="2" height="8" fill="#fff8e1"/><rect x="3" y="10" width="2" height="4" fill="#ffb703"/><rect x="11" y="10" width="2" height="4" fill="#ffb703"/></svg>',
+      '<svg viewBox="0 0 16 16" shape-rendering="crispEdges" width="36" height="36"><rect x="4" y="6" width="8" height="6" fill="#8a7a9a"/><rect x="6" y="4" width="4" height="2" fill="#8a7a9a"/><rect x="3" y="8" width="10" height="2" fill="#cdeeff"/></svg>',
+      '<svg viewBox="0 0 16 16" shape-rendering="crispEdges" width="36" height="36"><rect x="5" y="2" width="6" height="6" fill="#e05a4e"/><rect x="6" y="8" width="4" height="6" fill="#f7ecc9"/><rect x="5" y="3" width="2" height="2" fill="#fff"/><rect x="9" y="3" width="2" height="2" fill="#fff"/></svg>',
+      '<svg viewBox="0 0 16 16" shape-rendering="crispEdges" width="36" height="36"><rect x="4" y="2" width="8" height="8" fill="#2f80b8"/><rect x="5" y="3" width="2" height="2" fill="#d2eaff"/><rect x="9" y="3" width="2" height="2" fill="#d2eaff"/><rect x="4" y="10" width="8" height="4" fill="#4aa13e"/></svg>'
+    ];
+    var first = null;
+    var lock = false;
+    var moves = 0;
+    var matched = 0;
+    function build(){
+      grid.innerHTML = '';
+      var deck = [];
+      for (var i = 0; i < icons.length; i++) { deck.push(i); deck.push(i); }
+      deck.sort(function(){ return Math.random() - 0.5; });
+      deck.forEach(function(iconIdx){
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'card';
+        btn.setAttribute('data-icon', String(iconIdx));
+        btn.setAttribute('aria-label', 'card');
+        btn.innerHTML = '<span class="back">' + icons[iconIdx] + '</span>';
+        grid.appendChild(btn);
+      });
+      first = null; lock = false; moves = 0; matched = 0;
+      movesEl.textContent = '0'; msgEl.textContent = 'Match all 8 pairs!';
+    }
+    grid.addEventListener('click', function(e){
+      var card = e.target.closest('.card');
+      if (!card || card.classList.contains('flipped') || lock) return;
+      card.classList.add('flipped'); if (window.bgSound) bgSound.play('flip');
+      if (!first) { first = card; return; }
+      moves++; movesEl.textContent = String(moves);
+      if (first.getAttribute('data-icon') === card.getAttribute('data-icon')) {
+        first.classList.add('matched'); card.classList.add('matched'); if (window.bgSound) bgSound.play('match');
+        first = null; matched++;
+        if (matched === icons.length) if (window.bgSound) bgSound.play('win'); msgEl.textContent = 'You won in ' + moves + ' moves!';
+      } else {
+        lock = true;
+        var a = first, b = card;
+        setTimeout(function(){
+          a.classList.remove('flipped'); b.classList.remove('flipped');
+          first = null; lock = false;
+        }, 700);
+      }
+    });
+    restart.addEventListener('click', build);
+    build();
+  })();</script>
+</body>
+</html>

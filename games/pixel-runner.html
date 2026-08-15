@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en" data-seo-applied>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pixel Runner — Free Slope-Style Runner Game (No Download)</title>
+  <meta name="description" content="Play Pixel Runner online. A free Slope-style browser game: jump and dodge obstacles, get the highest score. No download or sign-up." />
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/pixel.css" />
+  <style>
+  .game-wrap { display:grid; justify-items:center; gap:16px; padding:28px 0 50px; }
+  .game-frame { background:var(--surface); border:4px solid var(--border); box-shadow:var(--shadow-lg); padding:12px; }
+  canvas { display:block; width:min(82vw, 620px); height:auto; image-rendering:pixelated; background:#10200f; cursor:pointer; }
+  .game-hud { display:flex; justify-content:space-between; gap:14px; width:min(82vw, 620px); font-family:var(--font-display); font-size:0.6rem; text-transform:uppercase; flex-wrap:wrap; }
+  .game-hud span { background:var(--surface-2); border:2px solid var(--border); box-shadow:2px 2px 0 var(--border); padding:8px 10px; }
+  .controls-note { max-width:480px; text-align:center; color:var(--text); opacity:0.92; font-size:1rem; }
+  .btn-restart { border:3px solid var(--border); box-shadow:4px 4px 0 var(--border); background:var(--cta); color:var(--cta-text); font-family:var(--font-display); font-size:0.62rem; text-transform:uppercase; padding:12px 16px; cursor:pointer; }
+  .btn-restart:active { transform:translate(3px,3px); box-shadow:0 0 0 var(--border); }
+</style>
+
+  <link rel="canonical" href="https://browsergames.example.com/games/pixel-runner.html" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BrowserGames Hub" />
+  <meta property="og:title" content="Pixel Runner — Free Slope-Style Runner Game (No Download)" />
+  <meta property="og:description" content="Play Pixel Runner online. A free Slope-style browser game: jump and dodge obstacles, get the highest score. No download or sign-up." />
+  <meta property="og:url" content="https://browsergames.example.com/games/pixel-runner.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Pixel Runner — Free Slope-Style Runner Game (No Download)" />
+  <meta name="twitter:description" content="Play Pixel Runner online. A free Slope-style browser game: jump and dodge obstacles, get the highest score. No download or sign-up." />
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"VideoGame","name":"Pixel Runner — Free Slope-Style Runner Game (No Download)","url":"https://browsergames.example.com/games/pixel-runner.html","description":"Play Pixel Runner online. A free Slope-style browser game: jump and dodge obstacles, get the highest score. No download or sign-up.","operatingSystem":"Web Browser","applicationCategory":"Game","genre":"Browser game","author":{"@type":"Organization","name":"BrowserGames Hub","url":"https://browsergames.example.com"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://browsergames.example.com/"},{"@type":"ListItem","position":2,"name":"Game Finder","item":"https://browsergames.example.com/game-finder.html"},{"@type":"ListItem","position":3,"name":"Runner — Free Slope-Style Runner Game (No Download)","item":"https://browsergames.example.com/games/pixel-runner.html"}]}]</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="../index.html" aria-label="BrowserGames Hub home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h4M8 9v4"/><circle cx="12" cy="12" r="9"/><path d="M12 12l4-4"/></svg>
+        </span>
+        BrowserGames Hub
+      </a>
+      <nav>
+        <ul class="nav-links" data-nav-links>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../online-games-for-long-distance-couples.html">Couples</a></li>
+          <li><a href="../game-finder.html">Game Finder</a></li>
+          <li><a href="../index.html#guides">Guides</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <section class="article-hero">
+    <div class="container">
+      <nav class="breadcrumb"><a href="../index.html">Home</a> / <a href="../game-finder.html">Game Finder</a> / Pixel Runner</nav>
+      <h1>Pixel Runner</h1>
+      <p class="article-excerpt">A simplified Slope-style runner. Jump with Space or Arrow Up, move left and right to dodge, and survive as long as you can.</p>
+    </div>
+  </section>
+
+  <main class="container game-wrap">
+    
+    <div class="game-hud"><span>Score: <b id="score">0</b></span><span>Best: <b id="best">0</b></span></div>
+    <div class="game-frame"><canvas id="game" width="620" height="260"></canvas></div>
+    <button class="btn-restart" id="restart">Restart</button>
+    <p class="controls-note">Arrow Left/Right or A/D to move. Space or Arrow Up to jump. On mobile, tap the game to jump.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>© <span data-year>2026</span> BrowserGames Hub. Play instantly, no download.</p>
+      <ul class="footer-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../game-finder.html">Game Finder</a></li>
+        <li><a href="snake.html">Pixel Snake</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>(function(){
+    var canvas = document.getElementById('game');
+    var ctx = canvas.getContext('2d');
+    var W = canvas.width, H = canvas.height;
+    var ground = 210;
+    var px = 70, py = ground - 18, pw = 18, ph = 18;
+    var vy = 0, onGround = true;
+    var obs = [], speed = 5, frame = 0, score = 0, dead = false;
+    var scoreEl = document.getElementById('score');
+    var bestEl = document.getElementById('best');
+    var restart = document.getElementById('restart');
+    var best = Number(localStorage.getItem('pixel-runner-best') || 0);
+    bestEl.textContent = best;
+    function reset(){
+      px = 70; py = ground - 18; vy = 0; onGround = true; obs = []; speed = 5; frame = 0; score = 0; dead = false;
+      scoreEl.textContent = '0'; draw();
+    }
+    function spawn(){
+      var h = Math.random() < 0.5 ? 18 : 32;
+      obs.push({ x: W, y: ground - h, w: 14, h: h });
+    }
+    function step(){
+      if (window.bgPaused) return;
+      frame++;
+      if (frame % 55 === 0) spawn();
+      if (frame % 260 === 0) speed += 0.5;
+      if (keys['ArrowLeft'] || keys['a'] || keys['A']) px -= 5;
+      if (keys['ArrowRight'] || keys['d'] || keys['D']) px += 5;
+      px = Math.max(4, Math.min(W - pw - 4, px));
+      if ((keys['ArrowUp'] || keys[' '] || keys['w'] || keys['W']) && onGround) { vy = -9; onGround = false; if (window.bgSound) bgSound.play('jump'); }
+      vy += 0.5;
+      py += vy;
+      if (py >= ground - ph) { py = ground - ph; vy = 0; onGround = true; }
+      for (var i = 0; i < obs.length; i++) { obs[i].x -= speed; }
+      obs = obs.filter(function(o){ return o.x > -20; });
+      for (var j = 0; j < obs.length; j++) {
+        var o = obs[j];
+        if (px < o.x + o.w && px + pw > o.x && py < o.y + o.h && py + ph > o.y) { dead = true; if (window.bgSound) bgSound.play('over'); }
+      }
+      if (!dead) { score++; scoreEl.textContent = String(Math.floor(score / 8)); }
+      draw();
+      if (dead) { clearInterval(timer); timer = null; if (Math.floor(score/8) > best) { best = Math.floor(score/8); localStorage.setItem('pixel-runner-best', String(best)); bestEl.textContent = best; } }
+    }
+    function draw(){
+      ctx.fillStyle = '#10200f'; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#4aa13e'; ctx.fillRect(0, ground, W, H - ground);
+      ctx.fillStyle = '#67c653'; ctx.fillRect(px, py, pw, ph);
+      ctx.fillStyle = '#ffd23f'; obs.forEach(function(o){ ctx.fillRect(o.x, o.y, o.w, o.h); });
+      if (dead) {
+        ctx.fillStyle = 'rgba(0,0,0,0.55)'; ctx.fillRect(0, 0, W, H);
+        ctx.fillStyle = '#fff'; ctx.font = '18px "Press Start 2P", monospace'; ctx.textAlign = 'center';
+        ctx.fillText('GAME OVER', W/2, H/2);
+        ctx.font = '11px "Press Start 2P", monospace';
+        ctx.fillText('Press Restart', W/2, H/2 + 30);
+      }
+    }
+    var keys = {};
+    document.addEventListener('keydown', function(e){
+      if (['ArrowLeft','ArrowRight','ArrowUp',' ','w','W','a','A','d','D'].indexOf(e.key) >= 0) { e.preventDefault(); keys[e.key] = true; }
+    });
+    document.addEventListener('keyup', function(e){ keys[e.key] = false; });
+    canvas.addEventListener('click', function(){ if (dead) { reset(); } else if (onGround) { vy = -9; onGround = false; if (window.bgSound) bgSound.play('jump'); } });
+    restart.addEventListener('click', function(){ if (timer) clearInterval(timer); reset(); timer = setInterval(step, 16); });
+    var timer = setInterval(step, 16);
+    reset();
+  })();</script>
+</body>
+</html>

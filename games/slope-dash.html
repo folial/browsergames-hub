@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en" data-seo-applied>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Slope Dash — Free Downhill Dodge Game (No Download)</title>
+  <meta name="description" content="Play Slope Dash online. A free Slope-style downhill dodge game: steer the pixel ball between blocks and set a high score." />
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/pixel.css" />
+  <style>
+  .game-wrap { display:grid; justify-items:center; gap:16px; padding:28px 0 50px; }
+  .game-frame { background:var(--surface); border:4px solid var(--border); box-shadow:var(--shadow-lg); padding:12px; }
+  canvas { display:block; width:min(82vw, 620px); height:auto; image-rendering:pixelated; background:#10200f; cursor:pointer; }
+  .game-hud { display:flex; justify-content:space-between; gap:14px; width:min(82vw, 620px); font-family:var(--font-display); font-size:0.6rem; text-transform:uppercase; flex-wrap:wrap; }
+  .game-hud span { background:var(--surface-2); border:2px solid var(--border); box-shadow:2px 2px 0 var(--border); padding:8px 10px; }
+  .controls-note { max-width:500px; text-align:center; color:var(--text); opacity:0.92; font-size:1rem; }
+  .btn-restart { border:3px solid var(--border); box-shadow:4px 4px 0 var(--border); background:var(--cta); color:var(--cta-text); font-family:var(--font-display); font-size:0.62rem; text-transform:uppercase; padding:12px 16px; cursor:pointer; }
+  .btn-restart:active { transform:translate(3px,3px); box-shadow:0 0 0 var(--border); }
+</style>
+
+  <link rel="canonical" href="https://browsergames.example.com/games/slope-dash.html" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BrowserGames Hub" />
+  <meta property="og:title" content="Slope Dash — Free Downhill Dodge Game (No Download)" />
+  <meta property="og:description" content="Play Slope Dash online. A free Slope-style downhill dodge game: steer the pixel ball between blocks and set a high score." />
+  <meta property="og:url" content="https://browsergames.example.com/games/slope-dash.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Slope Dash — Free Downhill Dodge Game (No Download)" />
+  <meta name="twitter:description" content="Play Slope Dash online. A free Slope-style downhill dodge game: steer the pixel ball between blocks and set a high score." />
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"VideoGame","name":"Slope Dash — Free Downhill Dodge Game (No Download)","url":"https://browsergames.example.com/games/slope-dash.html","description":"Play Slope Dash online. A free Slope-style downhill dodge game: steer the pixel ball between blocks and set a high score.","operatingSystem":"Web Browser","applicationCategory":"Game","genre":"Browser game","author":{"@type":"Organization","name":"BrowserGames Hub","url":"https://browsergames.example.com"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://browsergames.example.com/"},{"@type":"ListItem","position":2,"name":"Game Finder","item":"https://browsergames.example.com/game-finder.html"},{"@type":"ListItem","position":3,"name":"Slope Dash — Free Downhill Dodge Game (No Download)","item":"https://browsergames.example.com/games/slope-dash.html"}]}]</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="../index.html" aria-label="BrowserGames Hub home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h4M8 9v4"/><circle cx="12" cy="12" r="9"/><path d="M12 12l4-4"/></svg>
+        </span>
+        BrowserGames Hub
+      </a>
+      <nav>
+        <ul class="nav-links" data-nav-links>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../online-games-for-long-distance-couples.html">Couples</a></li>
+          <li><a href="../game-finder.html">Game Finder</a></li>
+          <li><a href="../index.html#guides">Guides</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <section class="article-hero">
+    <div class="container">
+      <nav class="breadcrumb"><a href="../index.html">Home</a> / <a href="../game-finder.html">Game Finder</a> / Slope Dash</nav>
+      <h1>Slope Dash</h1>
+      <p class="article-excerpt">A Slope-style downhill dodger. Steer the ball left and right, avoid the blocks, and survive as long as you can.</p>
+    </div>
+  </section>
+
+  <main class="container game-wrap">
+    
+    <div class="game-hud"><span>Score: <b id="score">0</b></span><span>Best: <b id="best">0</b></span></div>
+    <div class="game-frame"><canvas id="game" width="620" height="360"></canvas></div>
+    <button class="btn-restart" id="restart">Restart</button>
+    <p class="controls-note">Arrow Left/Right or A/D to steer. Avoid the blocks. Speed keeps rising.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>© <span data-year>2026</span> BrowserGames Hub. Play instantly, no download.</p>
+      <ul class="footer-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../game-finder.html">Game Finder</a></li>
+        <li><a href="snake.html">Pixel Snake</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>(function(){
+    var canvas = document.getElementById('game');
+    var ctx = canvas.getContext('2d');
+    var W = canvas.width, H = canvas.height;
+    var px = W/2, pw = 16, py = H - 60;
+    var obs = [], speed = 4, frame = 0, score = 0, dead = false;
+    var scoreEl = document.getElementById('score');
+    var bestEl = document.getElementById('best');
+    var best = Number(localStorage.getItem('slope-dash-best') || 0);
+    bestEl.textContent = best;
+    function reset(){ px = W/2; obs = []; speed = 4; frame = 0; score = 0; dead = false; scoreEl.textContent = '0'; draw(); }
+    function step(){
+      if (window.bgPaused) return;
+      if (dead) return;
+      frame++;
+      if (frame % 45 === 0) obs.push({ x: Math.random() * (W - 60) + 30, y: -20 });
+      if (frame % 300 === 0) speed += 0.5;
+      if (keys['ArrowLeft'] || keys['a'] || keys['A']) px -= 6;
+      if (keys['ArrowRight'] || keys['d'] || keys['D']) px += 6;
+      px = Math.max(10, Math.min(W - 10, px));
+      for (var i = 0; i < obs.length; i++) obs[i].y += speed;
+      obs = obs.filter(function(o){ return o.y < H + 20; });
+      for (var j = 0; j < obs.length; j++) {
+        var o = obs[j];
+        if (Math.abs(px - o.x) < 22 && Math.abs(py - o.y) < 22) { dead = true; if (window.bgSound) bgSound.play('over'); }
+      }
+      score += Math.floor(speed);
+      scoreEl.textContent = String(Math.floor(score / 8));
+      if (dead && Math.floor(score/8) > best) { best = Math.floor(score/8); bestEl.textContent = best; localStorage.setItem('slope-dash-best', String(best)); }
+      draw();
+    }
+    function draw(){
+      ctx.fillStyle = '#8ed0f5'; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#4aa13e'; ctx.fillRect(0, H - 20, W, 20);
+      ctx.fillStyle = '#ffd23f'; ctx.fillRect(px - pw/2, py - pw/2, pw, pw);
+      obs.forEach(function(o){ ctx.fillStyle = '#2f80b8'; ctx.fillRect(o.x - 12, o.y - 12, 24, 24); });
+      if (dead) {
+        ctx.fillStyle = 'rgba(0,0,0,0.55)'; ctx.fillRect(0, 0, W, H);
+        ctx.fillStyle = '#fff'; ctx.font = '18px "Press Start 2P", monospace'; ctx.textAlign = 'center';
+        ctx.fillText('GAME OVER', W/2, H/2);
+      }
+    }
+    var keys = {};
+    document.addEventListener('keydown', function(e){
+      if (['ArrowLeft','ArrowRight','a','A','d','D'].indexOf(e.key) >= 0) { e.preventDefault(); keys[e.key] = true; }
+    });
+    document.addEventListener('keyup', function(e){ keys[e.key] = false; });
+    canvas.addEventListener('touchmove', function(e){ e.preventDefault(); var r = canvas.getBoundingClientRect(); px = (e.touches[0].clientX - r.left) * (W / r.width); }, { passive: false });
+    document.getElementById('restart').addEventListener('click', function(){ reset(); });
+    reset(); draw(); setInterval(step, 16);
+  })();</script>
+</body>
+</html>

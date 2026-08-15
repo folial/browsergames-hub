@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en" data-seo-applied>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pixel Draw & Guess — Free 2-Player Party Game (No Download)</title>
+  <meta name="description" content="Play Draw & Guess with two players on one screen. One draws a secret word, the other guesses. Free pixel-art party game." />
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/pixel.css" />
+  <style>
+  .game-wrap { display:grid; justify-items:center; gap:16px; padding:28px 0 50px; }
+  .game-frame { background:var(--surface); border:4px solid var(--border); box-shadow:var(--shadow-lg); padding:12px; }
+  canvas { display:block; width:min(82vw, 620px); height:auto; image-rendering:pixelated; background:#10200f; cursor:pointer; }
+  .game-hud { display:flex; justify-content:space-between; gap:14px; width:min(82vw, 620px); font-family:var(--font-display); font-size:0.6rem; text-transform:uppercase; flex-wrap:wrap; }
+  .game-hud span { background:var(--surface-2); border:2px solid var(--border); box-shadow:2px 2px 0 var(--border); padding:8px 10px; }
+  .controls-note { max-width:500px; text-align:center; color:var(--text); opacity:0.92; font-size:1rem; }
+  .btn-restart { border:3px solid var(--border); box-shadow:4px 4px 0 var(--border); background:var(--cta); color:var(--cta-text); font-family:var(--font-display); font-size:0.62rem; text-transform:uppercase; padding:12px 16px; cursor:pointer; }
+  .btn-restart:active { transform:translate(3px,3px); box-shadow:0 0 0 var(--border); }
+
+    .draw-tools { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
+    .color-dot { width:26px; height:26px; border:2px solid var(--border); cursor:pointer; }
+    .color-dot.active { outline:3px solid var(--cta); }
+    #draw { width:min(82vw,620px); height:auto; touch-action:none; }
+  </style>
+
+  <link rel="canonical" href="https://browsergames.example.com/games/draw-and-guess.html" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BrowserGames Hub" />
+  <meta property="og:title" content="Pixel Draw &amp; Guess — Free 2-Player Party Game (No Download)" />
+  <meta property="og:description" content="Play Draw &amp; Guess with two players on one screen. One draws a secret word, the other guesses. Free pixel-art party game." />
+  <meta property="og:url" content="https://browsergames.example.com/games/draw-and-guess.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Pixel Draw &amp; Guess — Free 2-Player Party Game (No Download)" />
+  <meta name="twitter:description" content="Play Draw &amp; Guess with two players on one screen. One draws a secret word, the other guesses. Free pixel-art party game." />
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"VideoGame","name":"Pixel Draw & Guess — Free 2-Player Party Game (No Download)","url":"https://browsergames.example.com/games/draw-and-guess.html","description":"Play Draw & Guess with two players on one screen. One draws a secret word, the other guesses. Free pixel-art party game.","operatingSystem":"Web Browser","applicationCategory":"Game","genre":"Browser game","author":{"@type":"Organization","name":"BrowserGames Hub","url":"https://browsergames.example.com"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://browsergames.example.com/"},{"@type":"ListItem","position":2,"name":"Game Finder","item":"https://browsergames.example.com/game-finder.html"},{"@type":"ListItem","position":3,"name":"Draw & Guess — Free 2-Player Party Game (No Download)","item":"https://browsergames.example.com/games/draw-and-guess.html"}]}]</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="../index.html" aria-label="BrowserGames Hub home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h4M8 9v4"/><circle cx="12" cy="12" r="9"/><path d="M12 12l4-4"/></svg>
+        </span>
+        BrowserGames Hub
+      </a>
+      <nav>
+        <ul class="nav-links" data-nav-links>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../online-games-for-long-distance-couples.html">Couples</a></li>
+          <li><a href="../game-finder.html">Game Finder</a></li>
+          <li><a href="../index.html#guides">Guides</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <section class="article-hero">
+    <div class="container">
+      <nav class="breadcrumb"><a href="../index.html">Home</a> / <a href="../game-finder.html">Game Finder</a> / Draw & Guess</nav>
+      <h1>Pixel Draw & Guess</h1>
+      <p class="article-excerpt">A pass-and-play drawing game. Player 1 draws a secret word, then Player 2 guesses what it is.</p>
+    </div>
+  </section>
+
+  <main class="container game-wrap">
+    
+    <div class="game-hud"><span id="stage">Player 1: draw this word</span><span id="score">Score: 0</span></div>
+    <div class="game-frame"><canvas id="draw" width="620" height="360"></canvas></div>
+    <div class="draw-tools">
+      <div class="color-dot" data-c="#3b2e25" style="background:#3b2e25"></div>
+      <div class="color-dot" data-c="#e05a4e" style="background:#e05a4e"></div>
+      <div class="color-dot" data-c="#4aa13e" style="background:#4aa13e"></div>
+      <div class="color-dot" data-c="#2f80b8" style="background:#2f80b8"></div>
+      <div class="color-dot" data-c="#ffd23f" style="background:#ffd23f"></div>
+      <div class="color-dot" data-c="#ffffff" style="background:#ffffff"></div>
+      <button class="btn-restart" id="clear">Clear</button>
+    </div>
+    <button class="btn-restart" id="done">Done / Reveal to Player 2</button>
+    <div class="game-hud"><input id="guess" placeholder="Player 2 type guess here" style="font-family:var(--font-body); padding:8px; width:240px; border:2px solid var(--border);" /><button class="btn-restart" id="submit">Guess</button></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>© <span data-year>2026</span> BrowserGames Hub. Play instantly, no download.</p>
+      <ul class="footer-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../game-finder.html">Game Finder</a></li>
+        <li><a href="snake.html">Pixel Snake</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>(function(){
+    var canvas = document.getElementById('draw');
+    var ctx = canvas.getContext('2d');
+    var words = ['CAT','HOUSE','TREE','ROCKET','PIZZA','UMBRELLA','ROBOT','CASTLE','BANANA','GHOST','SUN','BOAT'];
+    var word = '', drawing = true, score = 0;
+    var color = '#3b2e25';
+    var stageEl = document.getElementById('stage');
+    var scoreEl = document.getElementById('score');
+    var guessEl = document.getElementById('guess');
+    function newWord(){ word = words[Math.floor(Math.random() * words.length)]; drawing = true; stageEl.textContent = 'Player 1: draw ' + word; clearCanvas(); }
+    function clearCanvas(){ ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, canvas.width, canvas.height); }
+    function setColor(c){ color = c; document.querySelectorAll('.color-dot').forEach(function(d){ d.classList.toggle('active', d.getAttribute('data-c') === c); }); }
+    document.querySelectorAll('.color-dot').forEach(function(d){ d.addEventListener('click', function(){ setColor(d.getAttribute('data-c')); }); });
+    var drawingNow = false, last = null;
+    canvas.addEventListener('mousedown', function(e){ drawingNow = true; last = pos(e); });
+    canvas.addEventListener('mousemove', function(e){ if (!drawingNow) return; var p = pos(e); line(last, p); last = p; });
+    canvas.addEventListener('mouseup', function(){ drawingNow = false; });
+    canvas.addEventListener('touchstart', function(e){ e.preventDefault(); drawingNow = true; last = pos(e.touches[0]); }, { passive: false });
+    canvas.addEventListener('touchmove', function(e){ e.preventDefault(); if (!drawingNow) return; var p = pos(e.touches[0]); line(last, p); last = p; }, { passive: false });
+    canvas.addEventListener('touchend', function(){ drawingNow = false; });
+    function pos(e){ var r = canvas.getBoundingClientRect(); return { x: (e.clientX - r.left) * (canvas.width / r.width), y: (e.clientY - r.top) * (canvas.height / r.height) }; }
+    function line(a, b){ ctx.strokeStyle = color; ctx.lineWidth = 5; ctx.lineCap = 'square'; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
+    document.getElementById('clear').addEventListener('click', clearCanvas);
+    document.getElementById('done').addEventListener('click', function(){
+      if (drawing) { drawing = false; stageEl.textContent = 'Player 2: guess what was drawn!'; guessEl.focus(); }
+    });
+    document.getElementById('submit').addEventListener('click', function(){
+      var g = guessEl.value.trim().toUpperCase();
+      if (!g) return;
+      if (g === word) { score++; scoreEl.textContent = 'Score: ' + score; stageEl.textContent = 'Correct! It was ' + word; if (window.bgSound) bgSound.play('win'); }
+      else { stageEl.textContent = 'Nope! It was ' + word; if (window.bgSound) bgSound.play('over'); }
+      guessEl.value = '';
+      setTimeout(newWord, 1400);
+    });
+    setColor('#3b2e25'); newWord();
+  })();</script>
+</body>
+</html>
