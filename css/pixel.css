@@ -768,6 +768,16 @@ a.game-card {
   display: none !important;
 }
 
+/* ---------- Direct game pages: show the game immediately ---------- */
+
+.game-page .article-hero {
+  display: none !important;
+}
+
+.game-page .game-wrap {
+  padding-top: 20px;
+}
+
 .embed-mode .game-wrap {
   padding: 10px 0 20px;
 }
