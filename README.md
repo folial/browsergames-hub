@@ -1,6 +1,6 @@
 # BrowserGames Hub
 
-Static content + 19 playable pixel games + SEO-ready pages. No build step required.
+Static content + 21 playable pixel games + SEO-ready pages. No build step required.
 
 ## Preview locally
 
@@ -44,9 +44,9 @@ browsergames-site/
 ├── how-to-play-slope.html                    # Slope guide
 ├── best-co-op-browser-games.html             # Co-op list
 ├── games-to-play-with-friends-online.html    # Friends list
-├── game-finder.html                          # 19 on-site games
+├── game-finder.html                          # 21 on-site games
 ├── 404.html
-├── games/                                    # All 19 playable games
+├── games/                                    # All 21 playable games
 ├── css/style.css + css/pixel.css             # Base + pixel theme
 ├── js/main.js                                # Shared interactions + sound
 ├── favicon.svg

@@ -6,7 +6,7 @@ echo === BrowserGames Hub: Deploy to GitHub Pages ===
 echo.
 
 git add .
-git commit -m "Update site content: fix 404 links, privacy policy, dates, guide titles, and categorization"
+git commit -m "Add Pixel Whack-a-Mole and Pixel Reaction Time games"
 git push origin main
 
 echo.

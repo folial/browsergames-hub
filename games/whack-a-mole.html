@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en" data-seo-applied>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pixel Whack-a-Mole — Free Arcade Game (No Download)</title>
+  <meta name="description" content="Play Pixel Whack-a-Mole online. A free pixel-art whack-a-mole game: click the moles before they hide and beat your high score." />
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/pixel.css" />
+  <style>
+    .game-wrap { display:grid; justify-items:center; gap:16px; padding:28px 0 50px; }
+    .game-frame { background:var(--surface); border:4px solid var(--border); box-shadow:var(--shadow-lg); padding:12px; }
+    canvas { display:block; width:min(82vw, 480px); height:auto; image-rendering:pixelated; background:#10200f; cursor:pointer; }
+    .game-hud { display:flex; justify-content:space-between; gap:14px; width:min(82vw, 480px); font-family:var(--font-display); font-size:0.6rem; text-transform:uppercase; flex-wrap:wrap; }
+    .game-hud span { background:var(--surface-2); border:2px solid var(--border); box-shadow:2px 2px 0 var(--border); padding:8px 10px; }
+    .controls-note { max-width:440px; text-align:center; color:var(--text); opacity:0.92; font-size:1rem; }
+    .btn-restart { border:3px solid var(--border); box-shadow:4px 4px 0 var(--border); background:var(--cta); color:var(--cta-text); font-family:var(--font-display); font-size:0.62rem; text-transform:uppercase; padding:12px 16px; cursor:pointer; }
+    .btn-restart:active { transform:translate(3px,3px); box-shadow:0 0 0 var(--border); }
+  </style>
+
+  <link rel="canonical" href="https://browsergames.click/games/whack-a-mole.html" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BrowserGames Hub" />
+  <meta property="og:title" content="Pixel Whack-a-Mole — Free Arcade Game (No Download)" />
+  <meta property="og:description" content="Play Pixel Whack-a-Mole online. A free pixel-art whack-a-mole game: click the moles before they hide and beat your high score." />
+  <meta property="og:url" content="https://browsergames.click/games/whack-a-mole.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Pixel Whack-a-Mole — Free Arcade Game (No Download)" />
+  <meta name="twitter:description" content="Play Pixel Whack-a-Mole online. A free pixel-art whack-a-mole game: click the moles before they hide and beat your high score." />
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"VideoGame","name":"Pixel Whack-a-Mole — Free Arcade Game (No Download)","url":"https://browsergames.click/games/whack-a-mole.html","description":"Play Pixel Whack-a-Mole online. A free pixel-art whack-a-mole game: click the moles before they hide and beat your high score.","operatingSystem":"Web Browser","applicationCategory":"Game","genre":"Browser game","author":{"@type":"Organization","name":"BrowserGames Hub","url":"https://browsergames.click"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://browsergames.click/"},{"@type":"ListItem","position":2,"name":"Game Finder","item":"https://browsergames.click/game-finder.html"},{"@type":"ListItem","position":3,"name":"Pixel Whack-a-Mole — Free Arcade Game (No Download)","item":"https://browsergames.click/games/whack-a-mole.html"}]}]</script>
+  <meta name="google-site-verification" content="gT11VOFgOQFxP9c4xvPMM4TDWVwo54k-1dP1TZvyJTs" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-579DPCHJ6G"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-579DPCHJ6G');
+  </script>
+</head>
+<body class="game-page">
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="../index.html" aria-label="BrowserGames Hub home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h4M8 9v4"/><circle cx="12" cy="12" r="9"/><path d="M12 12l4-4"/></svg>
+        </span>
+        BrowserGames Hub
+      </a>
+      <nav>
+        <ul class="nav-links" data-nav-links>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../online-games-for-long-distance-couples.html">Couples</a></li>
+          <li><a href="../game-finder.html">Game Finder</a></li>
+          <li><a href="../index.html#guides">Guides</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <section class="article-hero">
+    <div class="container">
+      <nav class="breadcrumb"><a href="../index.html">Home</a> / <a href="../game-finder.html">Game Finder</a> / Pixel Whack-a-Mole</nav>
+      <h1>Pixel Whack-a-Mole</h1>
+      <p class="article-excerpt">A fast pixel whack-a-mole game. Click or tap the moles before they hide — how many can you get in 30 seconds?</p>
+    </div>
+  </section>
+
+  <main class="container game-wrap">
+    <div class="game-hud">
+      <span>Score: <b id="score">0</b></span>
+      <span>Best: <b id="best">0</b></span>
+      <span>Time: <b id="time">30</b></span>
+    </div>
+    <div class="game-frame"><canvas id="game" width="480" height="360"></canvas></div>
+    <button class="btn-restart" id="restart">Restart</button>
+    <p class="controls-note">Click or tap a mole before it hides. You have 30 seconds. Restart button resets the game.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>© <span data-year>2026</span> BrowserGames Hub. Play instantly, no download.</p>
+      <ul class="footer-links">
+        <li><a href="../privacy-policy.html">Privacy</a></li>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../game-finder.html">Game Finder</a></li>
+        <li><a href="snake.html">Pixel Snake</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>(function(){
+    var canvas = document.getElementById('game');
+    var ctx = canvas.getContext('2d');
+    var W = canvas.width, H = canvas.height;
+    var scoreEl = document.getElementById('score');
+    var bestEl = document.getElementById('best');
+    var timeEl = document.getElementById('time');
+    var restartBtn = document.getElementById('restart');
+    var best = Number(localStorage.getItem('whack-a-mole-best') || 0);
+    var cols = 3, rows = 3;
+    var cellW = W / cols, cellH = H / rows;
+    var score = 0, timeLeft = 30, mole = -1, moleTimer = 0, running = false, ended = false, tickCount = 0;
+    bestEl.textContent = best;
+
+    function reset(){
+      score = 0; timeLeft = 30; mole = -1; moleTimer = 0; running = true; ended = false; tickCount = 0;
+      scoreEl.textContent = '0'; timeEl.textContent = '30';
+      draw();
+    }
+
+    function step(){
+      if (window.bgPaused) return;
+      if (!running || ended) return;
+      if (timeLeft <= 0) {
+        ended = true;
+        if (score > best) {
+          best = score;
+          bestEl.textContent = best;
+          localStorage.setItem('whack-a-mole-best', String(best));
+        }
+        draw();
+        return;
+      }
+      if (mole >= 0) {
+        moleTimer++;
+        if (moleTimer > 18) { // mole hides after ~0.9s at 50ms ticks
+          mole = -1;
+        }
+      } else if (Math.random() < 0.03) {
+        mole = Math.floor(Math.random() * (cols * rows));
+        moleTimer = 0;
+      }
+      tickCount++;
+      if (tickCount % 20 === 0) {
+        timeLeft--;
+        timeEl.textContent = String(Math.max(0, timeLeft));
+      }
+      draw();
+    }
+
+    function draw(){
+      ctx.fillStyle = '#3a2a1a';
+      ctx.fillRect(0, 0, W, H);
+      for (var r = 0; r < rows; r++) {
+        for (var c = 0; c < cols; c++) {
+          var x = c * cellW, y = r * cellH;
+          ctx.fillStyle = '#6b4a2f';
+          ctx.beginPath();
+          ctx.ellipse(x + cellW/2, y + cellH - 18, 44, 18, 0, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = '#2e1c10';
+          ctx.beginPath();
+          ctx.ellipse(x + cellW/2, y + cellH - 12, 30, 10, 0, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      if (mole >= 0) {
+        var mx = (mole % cols) * cellW + cellW/2;
+        var my = Math.floor(mole / cols) * cellH + cellH/2;
+        ctx.fillStyle = '#8b5a2b';
+        ctx.fillRect(mx - 22, my - 28, 44, 52);
+        ctx.fillStyle = '#c9823b';
+        ctx.fillRect(mx - 18, my - 34, 36, 12);
+        ctx.fillStyle = '#3b2e25';
+        ctx.fillRect(mx - 12, my - 16, 8, 8);
+        ctx.fillRect(mx + 4, my - 16, 8, 8);
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(mx - 12, my - 18, 4, 4);
+        ctx.fillRect(mx + 4, my - 18, 4, 4);
+      }
+      if (ended) {
+        ctx.fillStyle = 'rgba(0,0,0,0.55)';
+        ctx.fillRect(0, 0, W, H);
+        ctx.fillStyle = '#fff';
+        ctx.font = '20px "Press Start 2P", monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('TIME UP', W/2, H/2 - 14);
+        ctx.font = '14px "Press Start 2P", monospace';
+        ctx.fillText('SCORE ' + score, W/2, H/2 + 26);
+      }
+    }
+
+    function hitTest(e){
+      var rect = canvas.getBoundingClientRect();
+      var scaleX = W / rect.width, scaleY = H / rect.height;
+      var x = (e.clientX - rect.left) * scaleX;
+      var y = (e.clientY - rect.top) * scaleY;
+      var c = Math.floor(x / cellW);
+      var r = Math.floor(y / cellH);
+      var idx = r * cols + c;
+      if (idx === mole) {
+        score++;
+        scoreEl.textContent = String(score);
+        if (window.bgSound) bgSound.play('eat');
+        mole = -1;
+      } else {
+        if (window.bgSound) bgSound.play('hurt');
+      }
+    }
+
+    canvas.addEventListener('click', function(e){
+      if (!running || ended) return;
+      hitTest(e);
+    });
+    restartBtn.addEventListener('click', function(){ reset(); });
+    reset();
+    draw();
+    setInterval(step, 50);
+  })();</script>
+</body>
+</html>

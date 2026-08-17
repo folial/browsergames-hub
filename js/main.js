@@ -143,7 +143,7 @@
   // ---------- Random quick-play game (homepage widget) ----------
   const quickFrame = document.getElementById('quick-game');
   if (quickFrame) {
-    const games = ['snake','pong','memory-match','pixel-runner','2048-pixel','breakout','tic-tac-toe','simon-says','flappy-pixel','connect-4','checkers','word-guess','draw-and-guess','egg-shooter','block-shooter','neon-shooter','slope-dash','drift-dash','party-quiz'];
+    const games = ['snake','pong','memory-match','pixel-runner','2048-pixel','breakout','tic-tac-toe','simon-says','flappy-pixel','connect-4','checkers','word-guess','draw-and-guess','egg-shooter','block-shooter','neon-shooter','slope-dash','drift-dash','party-quiz','whack-a-mole','reaction-time'];
     const names = {
       'snake': 'Pixel Snake',
       'pong': 'Pixel Pong',
@@ -163,7 +163,9 @@
         'neon-shooter': 'Neon Shooter',
         'slope-dash': 'Slope Dash',
         'drift-dash': 'Drift Dash',
-        'party-quiz': 'Party Quiz'
+        'party-quiz': 'Party Quiz',
+          'whack-a-mole': 'Whack-a-Mole',
+          'reaction-time': 'Reaction Time'
     };
     let current = Math.floor(Math.random() * games.length);
     let started = false;
