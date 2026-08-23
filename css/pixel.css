@@ -4,8 +4,6 @@
    Loads after style.css and replaces the visual language.
    ========================================================================= */
 
-@import url('style.css');
-
 :root {
   --bg: #8ed0f5;
   --bg-soft: #b7e4fa;
