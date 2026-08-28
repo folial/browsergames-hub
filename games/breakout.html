@@ -37,15 +37,23 @@
   <meta name="twitter:description" content="Play Breakout online. A free pixel-art brick breaker with keyboard and mouse controls, score, and lives. No download or sign-up." />
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"VideoGame","name":"Pixel Breakout — Free Brick Breaker Game (No Download)","url":"https://browsergames.click/games/breakout.html","description":"Play Breakout online. A free pixel-art brick breaker with keyboard and mouse controls, score, and lives. No download or sign-up.","operatingSystem":"Web Browser","applicationCategory":"Game","genre":"Browser game","author":{"@type":"Organization","name":"BrowserGames Hub","url":"https://browsergames.click"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://browsergames.click/"},{"@type":"ListItem","position":2,"name":"Game Finder","item":"https://browsergames.click/game-finder.html"},{"@type":"ListItem","position":3,"name":"Breakout — Free Brick Breaker Game (No Download)","item":"https://browsergames.click/games/breakout.html"}]}]</script>
   <meta name="google-site-verification" content="gT11VOFgOQFxP9c4xvPMM4TDWVwo54k-1dP1TZvyJTs" />
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-579DPCHJ6G"></script>
+  <!-- Analytics is loaded only after the visitor allows optional analytics. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
     gtag('config', 'G-579DPCHJ6G');
   </script>
 </head>
 <body class="game-page">
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="../index.html" aria-label="BrowserGames Hub home">
@@ -76,12 +84,19 @@
     </div>
   </section>
 
-  <main class="container game-wrap">
+  <main id="main-content" class="container game-wrap">
     
     <div class="game-hud"><span>Score: <b id="score">0</b></span><span class="hearts" id="hearts" aria-label="Lives"></span></div>
     <div class="game-frame"><canvas id="game" width="620" height="360"></canvas></div>
     <button class="btn-restart" id="restart">Restart</button>
     <p class="controls-note">Arrow Left/Right or move your mouse to control the paddle. Clear all bricks to win.</p>
+    <section class="game-info prose" aria-labelledby="how-to-play-title">
+      <h2 id="how-to-play-title">How to play Pixel Breakout</h2>
+      <p>Move the paddle with the left and right arrow keys or your mouse. Keep the ball in play, bounce it into the brick wall, and clear every brick before you run out of lives. The restart button begins a fresh board.</p>
+      <h2>Control the angle</h2>
+      <p>The ball’s return angle depends on where it meets the paddle. Try to catch it near the edges when you need to change direction, but center your paddle first so a fast return does not surprise you.</p>
+      <p><a href="../game-finder.html">Choose another game</a>, or switch to <a href="slope-dash.html">Slope Dash</a> for a faster reflex challenge.</p>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -89,6 +104,9 @@
       <p>© <span data-year>2026</span> BrowserGames Hub. Play instantly, no download.</p>
       <ul class="footer-links">
         <li><a href="../privacy-policy.html">Privacy</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../testing-method.html">How we test</a></li>
+        <li><a href="../contact.html">Contact</a></li>
         <li><a href="../index.html">Home</a></li>
         <li><a href="../game-finder.html">Game Finder</a></li>
         <li><a href="snake.html">Pixel Snake</a></li>

@@ -1,6 +1,6 @@
 # BrowserGames Hub — 建站总览
 
-> 本文档是网站的建站总览，供站长快速了解全站结构与状态。最后更新：2026-08-23。
+> 本文档是网站的建站总览，供站长快速了解全站结构与状态。最后更新：2026-08-28。
 
 ## 一、站点概况
 
@@ -13,7 +13,7 @@
 | 技术栈 | 纯静态 HTML + CSS + 原生 JS，**无构建步骤、无框架、无依赖** |
 | 托管 | GitHub Pages（仓库 `folial/browsergames-hub`，分支 `main`，绑定 CNAME `browsergames.click`） |
 | 分析 | GA4（测量 ID `G-579DPCHJ6G`），Google Search Console 已验证 |
-| 页面总数 | 36 个 HTML：1 首页 + 11 指南文章 + 1 工具页 + 1 隐私政策 + 21 游戏页 + 1 个 404 |
+| 页面总数 | 39 个 HTML：1 首页 + 11 指南文章 + 1 工具页 + 3 个信任/联系页面 + 1 隐私政策 + 21 游戏页 + 1 个 404 |
 
 ## 二、目录结构
 
@@ -21,6 +21,9 @@
 browsergames-hub/
 ├── index.html                 # 首页：hero + Quick Play 随机游戏 + 分类导航 + 最新指南
 ├── game-finder.html           # 工具页：按 玩法/类型 筛选 21 个站内游戏
+├── about.html                 # 关于本站、内容边界与编辑范围
+├── testing-method.html        # 游戏与指南的测试说明
+├── contact.html               # 内容纠错、隐私请求与合作联系
 ├── online-games-for-long-distance-couples.html   # 指南：异地情侣游戏
 ├── games-like-shell-shockers.html                 # 指南：类似的 FPS 游戏
 ├── how-to-play-slope.html                         # 指南：Slope 玩法教学
@@ -42,7 +45,7 @@ browsergames-hub/
 ├── favicon.svg                # 像素风红色笑脸图标
 ├── og-image.png               # 1200×630 社交分享图（og:image / twitter:image）
 ├── robots.txt                 # 允许全站抓取 + sitemap 声明
-├── sitemap.xml                # 35 条 URL（含全部指南/游戏页）
+├── sitemap.xml                # 38 条可索引 URL（含指南、信任页面与游戏页）
 ├── CNAME                      # 自定义域名绑定文件
 ├── deploy-to-github.bat       # 一键提交推送脚本
 └── README.md                  # 部署说明（Cloudflare / Netlify / Vercel 备选方案）
@@ -58,18 +61,18 @@ browsergames-hub/
 - **Explore by mood**：按场景分类卡片（异地情侣 / Game Finder / 指南 / 双人游戏）
 - **Latest guides**：最新文章网格（11 篇文章，带标签和阅读时长）
 - **底部 CTA**：引导使用 Game Finder
-- **页脚**：版权 + 隐私链接 + 全站导航
+- **页脚**：版权 + 隐私/关于/测试/联系入口 + 全站导航
 
 ### 2. 指南文章（11 篇）
-每篇结构一致：H1 + 摘要 + 推荐游戏卡片 + 正文 + 相关页推荐。定位为"从真实游玩体验出发的实用指南"：
+每篇结构一致：H1 + 摘要 + 推荐游戏卡片 + 正文 + 相关页推荐。定位为"有清晰边界、可复核的实用指南"：
 - 场景类：异地情侣、朋友联机、双人同屏、公司合作
 - 设备/人群类：Chromebook、低配 PC、儿童
 - 品类类：Slope 玩法、Shell Shockers 替代、io 游戏、年度十佳
 
-文章中推荐的都是**站内自研像素游戏**的落地页链接（不在站内留外链，把流量留在站内）。
+文章中的站内自研像素游戏会链接到本站落地页；真正的远程联机推荐保留官方外链，并明确标注为外部服务。
 
 ### 3. Game Finder（game-finder.html）
-前端筛选工具：按类型 chip（2P / Arcade / Board / Memory / Party / Puzzle / Racing / Shooter / Word）过滤 21 个游戏卡片，一点直达游戏页。
+前端筛选工具：按玩家数、设备、玩法、时长与类型 chip 过滤 21 个游戏卡片，一点直达游戏页；支持结果计数、空结果恢复与最近游玩。
 
 ### 4. 游戏页（games/*.html，21 个）
 每个游戏一个独立页面：玩法标题 + 游戏区（canvas 或 DOM 棋盘）+ 分数/最佳记录（存 localStorage）+ 控制说明 + 面包屑导航。游戏逻辑全部为该页面内联脚本，不依赖外部库。
@@ -113,7 +116,7 @@ browsergames-hub/
 - 每页 `canonical`（首页指向 `https://browsergames.click/`）
 - `og:type / og:site_name / og:title / og:description / og:url / og:image` + `twitter:card`（`summary_large_image`）+ `twitter:image`，全站统一使用 `og-image.png`
 - JSON-LD 结构化数据（按页面类型）：`WebSite`、`CollectionPage`、`Article`/`BreadcrumbList`、`VideoGame`/`BreadcrumbList`、`WebPage`
-- `robots.txt` + `sitemap.xml`（35 条 URL，与站内页面一一对应）
+- `robots.txt` + `sitemap.xml`（38 条可索引 URL，与站内页面一一对应）
 - 404.html 带 `noindex`
 - Google Search Console 已验证；GA4 全站埋点
 
@@ -133,5 +136,20 @@ browsergames-hub/
 5. 网站为纯英文内容（面向英文搜索），改写任何页面注意保持英文。
 
 ## 八、近期改动记录
+
+历史基线记录继续保留在本节末尾；本轮优化状态单独列在下一节。
+
+## 九、2026-08-28 optimization implementation status
+
+- Added `about.html`, `testing-method.html`, and `contact.html` so visitors and advertisers can see the site's editorial scope, testing limits, and correction path.
+- Reworked privacy wording to describe the GA4 measurement that is actually present, the fact that AdSense is not active yet, and the consent/ads.txt steps required before future advertising.
+- GA4 is now loaded only after optional analytics consent; every page exposes a footer Privacy choices control.
+- Gameplay telemetry now separates page views, real interaction starts, 30-second engaged sessions, and game ends.
+- The homepage restores recent local games, and game pages include a direct report-a-problem path.
+- Rebuilt Game Finder filters around player count, device, play style, genre, and session length. It now exposes result counts, an empty state, keyboard navigation, recent games, and share/rematch/next-game actions.
+- Added accessible skip links and runtime labels/status updates for game boards, scores, filters, and the mobile navigation.
+- Added a distinct, honest explanatory section to all 21 game pages. Local two-player games are labeled as same-screen/pass-and-play; external multiplayer services remain clearly separated in guides.
+- Replaced the sitemap with the 38 indexable URLs now intended for launch and added `ads.txt.template` without a fake publisher ID.
+- Remaining launch tasks are external: verify the real domain in Search Console, obtain an advertising provider's exact seller record, and configure a certified consent-management platform before personalized ads.
 
 - **2026-08-23**：全站新增 `og-image.png` 社交分享图并接入所有页面 `og:image`/`twitter:image`；`twitter:card` 升级为 `summary_large_image`；补全 `privacy-policy.html` 的 canonical/open graph/JSON-LD；修正首页 hero 第 3 条热门的错配标题；`pixel.css` 移除 `@import` 改为页面并列引用 `style.css` + `pixel.css`（消除串行渲染阻塞）。

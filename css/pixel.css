@@ -121,11 +121,6 @@ h1, h2, h3, h4, .brand, .btn, .chip, .post-tag, .mini-rank, .bento-link, .finder
   position: relative;
   overflow: hidden;
   padding: 64px 0 56px;
-  background:
-    linear-gradient(rgba(59, 46, 37, 0.10) 2px, transparent 2px),
-    linear-gradient(90deg, rgba(59, 46, 37, 0.10) 2px, transparent 2px),
-    var(--bg);
-  background-size: 28px 28px;
 }
 
 /* pixel clouds drifting across the sky */
@@ -328,10 +323,8 @@ h1, h2, h3, h4, .brand, .btn, .chip, .post-tag, .mini-rank, .bento-link, .finder
   overflow: hidden;
   border-bottom: 4px solid var(--border);
   background:
-    linear-gradient(rgba(59, 46, 37, 0.09) 2px, transparent 2px),
-    linear-gradient(90deg, rgba(59, 46, 37, 0.09) 2px, transparent 2px),
+    radial-gradient(circle at 18% 0%, rgba(255, 210, 63, 0.12), transparent 42%),
     var(--bg-soft);
-  background-size: 28px 28px;
 }
 
 .article-hero::before {
@@ -367,6 +360,16 @@ h1, h2, h3, h4, .brand, .btn, .chip, .post-tag, .mini-rank, .bento-link, .finder
   font-size: 1.05rem;
 }
 
+.consent-banner {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.consent-banner p {
+  color: var(--text);
+  opacity: 1;
+}
+
 .article-meta {
   font-family: var(--font-display);
   font-size: 0.55rem;
@@ -376,8 +379,9 @@ h1, h2, h3, h4, .brand, .btn, .chip, .post-tag, .mini-rank, .bento-link, .finder
 .prose h2 {
   font-size: 0.95rem;
   text-transform: uppercase;
-  border-left: 8px solid var(--cta);
-  padding-left: 12px;
+  border-inline-start: 0;
+  box-shadow: inset 4px 0 0 var(--cta);
+  padding-inline-start: 12px;
 }
 
 .prose h3 {
@@ -762,7 +766,9 @@ a.game-card {
 
 .embed-mode .site-header,
 .embed-mode .site-footer,
-.embed-mode .article-hero {
+.embed-mode .article-hero,
+.embed-mode .game-info,
+.embed-mode .related-games {
   display: none !important;
 }
 
@@ -814,5 +820,156 @@ a.game-card {
     transition: none !important;
     animation: none !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Shared accessibility + responsive polish ---------- */
+
+.skip-link {
+  border: 3px solid var(--border);
+  box-shadow: 3px 3px 0 var(--border);
+  font-size: 0.58rem;
+  text-transform: uppercase;
+}
+
+.btn,
+.chip,
+.nav-toggle,
+.nav-links a,
+.nav-cta,
+.btn-restart,
+.sound-toggle,
+.game-action {
+  min-height: 44px;
+}
+
+.nav-links a {
+  display: inline-flex;
+  align-items: center;
+}
+
+.filter-group {
+  padding: 4px 0;
+}
+
+.filter-label {
+  font-family: var(--font-display);
+  font-size: 0.54rem;
+  letter-spacing: 0.02em;
+}
+
+.finder-summary {
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  line-height: 1.7;
+}
+
+.finder-summary-help {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+}
+
+.finder-empty {
+  border: 3px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.finder-empty h2,
+.prose h2,
+.related-games h2 {
+  font-size: clamp(0.9rem, 2.4vw, 1.15rem);
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+  color: var(--text);
+}
+
+.finder-empty p,
+.game-status {
+  color: var(--text);
+  opacity: 0.9;
+}
+
+.game-card h4 {
+  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+
+.game-actions {
+  align-items: stretch;
+}
+
+.game-action {
+  line-height: 1.55;
+}
+
+.game-page canvas {
+  touch-action: none;
+}
+
+.recent-games .section-head {
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .prose table {
+    min-width: 0;
+  }
+
+  .filter-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+    align-items: stretch;
+  }
+
+  .filter-label {
+    grid-column: 1 / -1;
+    width: auto;
+  }
+
+  .filter-group .chip {
+    width: 100%;
+    min-width: 0;
+    padding-inline: 6px;
+  }
+
+  .sound-toggle {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    display: flex;
+    width: fit-content;
+    margin: 14px var(--gutter) 0 auto;
+  }
+
+  .game-actions {
+    width: calc(100% - var(--gutter) - var(--gutter));
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-group {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+  }
+
+  .filter-label {
+    grid-column: 1 / -1;
+    width: auto;
+  }
+
+  .filter-group .chip {
+    width: 100%;
+    min-width: 0;
+    padding-inline: 6px;
+  }
+
+  .game-action {
+    flex-basis: 100%;
+  }
+
+  .chip {
+    padding-inline: 12px;
   }
 }

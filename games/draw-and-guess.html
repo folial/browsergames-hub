@@ -42,15 +42,23 @@
   <meta name="twitter:description" content="Play Draw &amp; Guess with two players on one screen. One draws a secret word, the other guesses. Free pixel-art party game." />
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"VideoGame","name":"Pixel Draw & Guess — Free 2-Player Party Game (No Download)","url":"https://browsergames.click/games/draw-and-guess.html","description":"Play Draw & Guess with two players on one screen. One draws a secret word, the other guesses. Free pixel-art party game.","operatingSystem":"Web Browser","applicationCategory":"Game","genre":"Browser game","author":{"@type":"Organization","name":"BrowserGames Hub","url":"https://browsergames.click"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://browsergames.click/"},{"@type":"ListItem","position":2,"name":"Game Finder","item":"https://browsergames.click/game-finder.html"},{"@type":"ListItem","position":3,"name":"Draw & Guess — Free 2-Player Party Game (No Download)","item":"https://browsergames.click/games/draw-and-guess.html"}]}]</script>
   <meta name="google-site-verification" content="gT11VOFgOQFxP9c4xvPMM4TDWVwo54k-1dP1TZvyJTs" />
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-579DPCHJ6G"></script>
+  <!-- Analytics is loaded only after the visitor allows optional analytics. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
     gtag('config', 'G-579DPCHJ6G');
   </script>
 </head>
 <body class="game-page">
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="../index.html" aria-label="BrowserGames Hub home">
@@ -81,7 +89,7 @@
     </div>
   </section>
 
-  <main class="container game-wrap">
+  <main id="main-content" class="container game-wrap">
     
     <div class="game-hud"><span id="stage">Player 1: draw this word</span><span id="score">Score: 0</span></div>
     <div class="game-frame"><canvas id="draw" width="620" height="360"></canvas></div>
@@ -96,6 +104,13 @@
     </div>
     <button class="btn-restart" id="done">Done / Reveal to Player 2</button>
     <div class="game-hud"><input id="guess" placeholder="Player 2 type guess here" style="font-family:var(--font-body); padding:8px; width:240px; border:2px solid var(--border);" /><button class="btn-restart" id="submit">Guess</button></div>
+    <section class="game-info prose" aria-labelledby="how-to-play-title">
+      <h2 id="how-to-play-title">How to play Pixel Draw &amp; Guess</h2>
+      <p>Player 1 receives a secret word and draws it on the shared canvas without saying the answer. Player 2 types a guess, then use “Done / Reveal” to check the round. Pass the device between turns and keep score informally for a longer party game.</p>
+      <h2>Make the clue readable</h2>
+      <p>Start with the biggest shape, then add one or two distinctive details. Simple drawings are easier to guess than tiny decoration. This is a local pass-and-play activity; it does not create a remote video call.</p>
+      <p><a href="../game-finder.html">Find another party game</a>, or switch to <a href="party-quiz.html">Party Quiz</a> when you want ready-made questions.</p>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -103,6 +118,9 @@
       <p>© <span data-year>2026</span> BrowserGames Hub. Play instantly, no download.</p>
       <ul class="footer-links">
         <li><a href="../privacy-policy.html">Privacy</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../testing-method.html">How we test</a></li>
+        <li><a href="../contact.html">Contact</a></li>
         <li><a href="../index.html">Home</a></li>
         <li><a href="../game-finder.html">Game Finder</a></li>
         <li><a href="snake.html">Pixel Snake</a></li>

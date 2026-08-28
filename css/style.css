@@ -80,6 +80,88 @@ a:hover {
   border-radius: 4px;
 }
 
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1000;
+  min-height: 44px;
+  padding: 10px 14px;
+  background: var(--cta);
+  color: var(--cta-text);
+  border: 2px solid var(--border);
+  transform: translateY(-160%);
+  transition: transform 0.15s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.consent-banner {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 90;
+  width: min(560px, calc(100vw - 32px));
+  border: 1px solid var(--border-strong);
+  background: rgba(18, 24, 38, 0.98);
+  box-shadow: var(--shadow-lg);
+}
+
+.consent-banner-inner {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  gap: 18px;
+  padding: 16px 18px;
+}
+
+.consent-banner p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.consent-banner p strong {
+  color: var(--text);
+}
+
+.consent-banner p a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.consent-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.consent-actions .btn {
+  min-height: 44px;
+  white-space: nowrap;
+}
+
 /* ---------- Layout ---------- */
 
 .container {
@@ -262,6 +344,7 @@ a:hover {
   font-weight: 600;
   font-size: 0.98rem;
   cursor: pointer;
+  min-height: 44px;
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 
@@ -585,10 +668,13 @@ a:hover {
 }
 
 .table-wrap {
+  max-width: 100%;
   overflow-x: auto;
+  overflow-y: hidden;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   margin: 20px 0 26px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .prose table {
@@ -612,6 +698,7 @@ a:hover {
   border-top: 1px solid var(--border);
   color: #d7dfeb;
   vertical-align: top;
+  overflow-wrap: anywhere;
 }
 
 .prose tr:hover td {
@@ -736,10 +823,25 @@ a:hover {
 /* ---------- Game finder tool ---------- */
 
 .finder-controls {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  display: grid;
+  gap: 12px;
   margin: 20px 0;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.filter-label {
+  min-width: 84px;
+  color: var(--text);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .chip {
@@ -751,6 +853,7 @@ a:hover {
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
+  min-height: 44px;
   transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
@@ -813,10 +916,127 @@ a:hover {
 }
 
 .finder-item a {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 44px;
   margin-top: auto;
   color: var(--cta);
   font-weight: 700;
   font-size: 0.9rem;
+}
+
+.finder-summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 4px 0 18px;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.finder-summary-help {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.finder-empty {
+  margin: 20px 0;
+  padding: 24px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
+  text-align: center;
+}
+
+.finder-empty h2 {
+  margin: 0 0 8px;
+}
+
+.finder-empty p {
+  margin: 0 0 16px;
+  color: var(--muted);
+}
+
+.recent-games,
+.related-games {
+  margin: 30px 0 0;
+}
+
+.recent-games .section-head {
+  margin-bottom: 16px;
+}
+
+.recent-game-card {
+  min-height: 180px;
+}
+
+.game-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  width: min(82vw, 620px);
+  margin-top: 4px;
+}
+
+.game-action,
+.btn-restart,
+.nav-toggle,
+.nav-links a,
+.nav-cta,
+.sound-toggle {
+  min-height: 44px;
+}
+
+.nav-toggle {
+  min-width: 44px;
+}
+
+.game-action {
+  flex: 1 1 150px;
+}
+
+.game-status {
+  max-width: min(82vw, 620px);
+  min-height: 1.6em;
+  margin: 0;
+  color: var(--muted);
+  text-align: center;
+}
+
+.game-info {
+  width: min(100%, 760px);
+  margin: 18px auto 0;
+  text-align: left;
+}
+
+.game-info.prose h2:first-child {
+  margin-top: 0;
+}
+
+.game-page .game-wrap,
+.game-page .game-frame,
+.game-page canvas {
+  max-width: 100%;
+}
+
+.game-page canvas {
+  height: auto;
+}
+
+.ad-slot[data-ad-slot] {
+  display: block;
+  min-height: 90px;
+  margin: 24px auto;
+  border: 1px dashed var(--border-strong);
+  background: var(--surface-2);
+}
+
+.ad-slot[data-ad-slot][hidden] {
+  display: none;
 }
 
 /* ---------- Footer ---------- */
@@ -858,6 +1078,23 @@ a:hover {
   color: var(--text);
 }
 
+.footer-links .privacy-choice-link {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.88rem;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer-links .privacy-choice-link:hover {
+  color: var(--text);
+}
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 1024px) {
@@ -883,6 +1120,14 @@ a:hover {
 }
 
 @media (max-width: 768px) {
+  .container {
+    width: 100%;
+  }
+
+  .section {
+    padding: 40px 0;
+  }
+
   .hero-grid {
     grid-template-columns: 1fr;
     gap: 28px;
@@ -905,6 +1150,57 @@ a:hover {
     grid-template-columns: 1fr;
   }
 
+  .filter-group {
+    align-items: flex-start;
+  }
+
+  .filter-label {
+    width: 100%;
+  }
+
+  .prose table {
+    min-width: 0;
+    table-layout: fixed;
+  }
+
+  .prose th,
+  .prose td {
+    padding: 9px 7px;
+    font-size: 0.86rem;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .sound-toggle {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    display: flex;
+    width: fit-content;
+    margin: 14px var(--gutter) 0 auto;
+  }
+
+  .consent-banner {
+    right: 10px;
+    bottom: 10px;
+    width: calc(100% - 20px);
+  }
+
+  .consent-banner-inner {
+    padding: 14px;
+  }
+
+  .consent-actions {
+    width: 100%;
+  }
+
+  .consent-actions .btn {
+    flex: 1 1 0;
+    min-width: 0;
+    padding-inline: 8px;
+    white-space: normal;
+  }
+
   .nav-links {
     position: absolute;
     top: 64px;
@@ -924,6 +1220,17 @@ a:hover {
 
   .nav-toggle {
     display: grid;
+  }
+}
+
+@media (max-width: 480px) {
+  .consent-actions {
+    flex-direction: column;
+  }
+
+  .consent-actions .btn {
+    flex: 0 0 auto;
+    width: 100%;
   }
 }
 

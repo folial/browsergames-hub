@@ -37,15 +37,23 @@
   <meta name="twitter:description" content="Play Drift Dash online. A free drifting traffic-dodge game: steer the pixel car and avoid oncoming cars. No download." />
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"VideoGame","name":"Drift Dash — Free Traffic Dodge Game (No Download)","url":"https://browsergames.click/games/drift-dash.html","description":"Play Drift Dash online. A free drifting traffic-dodge game: steer the pixel car and avoid oncoming cars. No download.","operatingSystem":"Web Browser","applicationCategory":"Game","genre":"Browser game","author":{"@type":"Organization","name":"BrowserGames Hub","url":"https://browsergames.click"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://browsergames.click/"},{"@type":"ListItem","position":2,"name":"Game Finder","item":"https://browsergames.click/game-finder.html"},{"@type":"ListItem","position":3,"name":"Drift Dash — Free Traffic Dodge Game (No Download)","item":"https://browsergames.click/games/drift-dash.html"}]}]</script>
   <meta name="google-site-verification" content="gT11VOFgOQFxP9c4xvPMM4TDWVwo54k-1dP1TZvyJTs" />
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-579DPCHJ6G"></script>
+  <!-- Analytics is loaded only after the visitor allows optional analytics. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
     gtag('config', 'G-579DPCHJ6G');
   </script>
 </head>
 <body class="game-page">
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="../index.html" aria-label="BrowserGames Hub home">
@@ -76,12 +84,19 @@
     </div>
   </section>
 
-  <main class="container game-wrap">
+  <main id="main-content" class="container game-wrap">
     
     <div class="game-hud"><span>Score: <b id="score">0</b></span><span>Best: <b id="best">0</b></span></div>
     <div class="game-frame"><canvas id="game" width="620" height="360"></canvas></div>
     <button class="btn-restart" id="restart">Restart</button>
     <p class="controls-note">Arrow Left/Right or A/D to steer. Avoid the oncoming traffic.</p>
+    <section class="game-info prose" aria-labelledby="how-to-play-title">
+      <h2 id="how-to-play-title">How to play Drift Dash</h2>
+      <p>Steer the pixel car with the left and right arrows or A and D. Stay between the oncoming cars for as long as possible. The run is score-based, so every extra second matters and the road becomes harder to read as traffic closes in.</p>
+      <h2>Steer early, not sharply</h2>
+      <p>Make small corrections while a car is still far away. Large last-second movements often put you directly into the next lane. Restart when you want another short attempt and compare the best score saved on this device.</p>
+      <p><a href="../game-finder.html">Browse racing games</a>, or try <a href="slope-dash.html">Slope Dash</a> for obstacle dodging without traffic.</p>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -89,6 +104,9 @@
       <p>© <span data-year>2026</span> BrowserGames Hub. Play instantly, no download.</p>
       <ul class="footer-links">
         <li><a href="../privacy-policy.html">Privacy</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../testing-method.html">How we test</a></li>
+        <li><a href="../contact.html">Contact</a></li>
         <li><a href="../index.html">Home</a></li>
         <li><a href="../game-finder.html">Game Finder</a></li>
         <li><a href="snake.html">Pixel Snake</a></li>

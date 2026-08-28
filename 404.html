@@ -13,15 +13,23 @@
   <link rel="stylesheet" href="/css/style.css" />
   <link rel="stylesheet" href="/css/pixel.css" />
   <meta name="google-site-verification" content="gT11VOFgOQFxP9c4xvPMM4TDWVwo54k-1dP1TZvyJTs" />
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-579DPCHJ6G"></script>
+  <!-- Analytics is loaded only after the visitor allows optional analytics. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
     gtag('config', 'G-579DPCHJ6G');
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="/index.html" aria-label="BrowserGames Hub home">
@@ -42,6 +50,7 @@
     </div>
   </header>
 
+  <main id="main-content">
   <section class="hero">
     <div class="container hero-grid" style="text-align:center">
       <div>
@@ -54,6 +63,7 @@
       </div>
     </div>
   </section>
+  </main>
 
   <footer class="site-footer">
     <div class="container footer-grid">

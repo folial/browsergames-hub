@@ -42,15 +42,23 @@
   <meta name="twitter:description" content="Play Connect 4 online with two players on the same screen. Free pixel-art browser game, no download or sign-up." />
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"VideoGame","name":"Pixel Connect 4 — Free 2-Player Game (No Download)","url":"https://browsergames.click/games/connect-4.html","description":"Play Connect 4 online with two players on the same screen. Free pixel-art browser game, no download or sign-up.","operatingSystem":"Web Browser","applicationCategory":"Game","genre":"Browser game","author":{"@type":"Organization","name":"BrowserGames Hub","url":"https://browsergames.click"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://browsergames.click/"},{"@type":"ListItem","position":2,"name":"Game Finder","item":"https://browsergames.click/game-finder.html"},{"@type":"ListItem","position":3,"name":"Connect 4 — Free 2-Player Game (No Download)","item":"https://browsergames.click/games/connect-4.html"}]}]</script>
   <meta name="google-site-verification" content="gT11VOFgOQFxP9c4xvPMM4TDWVwo54k-1dP1TZvyJTs" />
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-579DPCHJ6G"></script>
+  <!-- Analytics is loaded only after the visitor allows optional analytics. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
     gtag('config', 'G-579DPCHJ6G');
   </script>
 </head>
 <body class="game-page">
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="../index.html" aria-label="BrowserGames Hub home">
@@ -81,12 +89,19 @@
     </div>
   </section>
 
-  <main class="container game-wrap">
+  <main id="main-content" class="container game-wrap">
     
     <div class="game-hud"><span id="turn">Player 1 (Red) goes first</span></div>
     <div class="c4-board" id="board"></div>
     <button class="btn-restart" id="restart">Restart</button>
     <p class="controls-note">Click a column to drop your disc. First to line up 4 wins.</p>
+    <section class="game-info prose" aria-labelledby="how-to-play-title">
+      <h2 id="how-to-play-title">How to play Pixel Connect 4</h2>
+      <p>Players take turns clicking a column to drop a disc. The first player to connect four discs horizontally, vertically, or diagonally wins. Because the board is shared, it is a quick pass-and-play game for two people on the same screen.</p>
+      <h2>Build a threat, block a threat</h2>
+      <p>Do not only chase your own line. Look for columns that give you two possible winning moves, then block the other player before the setup becomes unavoidable. The restart button is ready for an immediate rematch.</p>
+      <p><a href="../game-finder.html">See the full game list</a>, or try <a href="tic-tac-toe.html">Tic-Tac-Toe</a> for an even faster duel.</p>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -94,6 +109,9 @@
       <p>© <span data-year>2026</span> BrowserGames Hub. Play instantly, no download.</p>
       <ul class="footer-links">
         <li><a href="../privacy-policy.html">Privacy</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../testing-method.html">How we test</a></li>
+        <li><a href="../contact.html">Contact</a></li>
         <li><a href="../index.html">Home</a></li>
         <li><a href="../game-finder.html">Game Finder</a></li>
         <li><a href="snake.html">Pixel Snake</a></li>

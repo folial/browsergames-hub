@@ -27,15 +27,23 @@
   <meta name="twitter:description" content="The best free browser games to play with friends, couples, and solo. No download, no sign-up. Curated game guides, controls, and a game finder tool." />
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"BrowserGames Hub","url":"https://browsergames.click/","description":"The best free browser games to play with friends, couples, and solo. No download, no sign-up. Curated game guides, controls, and a game finder tool.","publisher":{"@type":"Organization","name":"BrowserGames Hub","url":"https://browsergames.click"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://browsergames.click/"}]}]</script>
   <meta name="google-site-verification" content="gT11VOFgOQFxP9c4xvPMM4TDWVwo54k-1dP1TZvyJTs" />
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-579DPCHJ6G"></script>
+  <!-- Analytics is loaded only after the visitor allows optional analytics. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
     gtag('config', 'G-579DPCHJ6G');
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="index.html" aria-label="BrowserGames Hub home">
@@ -62,7 +70,7 @@
     <div class="container hero-grid">
       <div>
         <h1>Free browser games worth your time. <span class="accent">No download, no sign-up.</span></h1>
-        <p>Curated lists, controls guides, and a quick game finder — built for people who want to play instantly with friends, partners, or solo.</p>
+        <p>Curated lists, controls guides, and a quick game finder, built for people who want to play instantly with friends, partners, or solo.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="game-finder.html">Find a game in 10 seconds</a>
           <a class="btn btn-ghost" href="#guides">Read the guides</a>
@@ -71,16 +79,22 @@
       <aside class="hero-card" aria-label="Top picks">
         <h2>Popular right now</h2>
         <div class="mini-list">
-          <a class="mini-item" href="online-games-for-long-distance-couples.html"><span class="mini-rank">1</span><span><strong>Online games for long-distance couples</strong> — 20 free picks</span></a>
-          <a class="mini-item" href="best-2-player-browser-games-no-download.html"><span class="mini-rank">2</span><span><strong>Best 2-player browser games</strong> — same-screen picks</span></a>
-          <a class="mini-item" href="games-to-play-with-friends-online.html"><span class="mini-rank">3</span><span><strong>Games to play with friends online</strong> — 17 free picks</span></a>
-          <a class="mini-item" href="games-like-shell-shockers.html"><span class="mini-rank">4</span><span><strong>Shell Shockers alternatives</strong> — free FPS picks</span></a>
+          <a class="mini-item" href="online-games-for-long-distance-couples.html"><span class="mini-rank">1</span><span><strong>Online games for long-distance couples</strong>: 10 practical picks</span></a>
+          <a class="mini-item" href="best-2-player-browser-games-no-download.html"><span class="mini-rank">2</span><span><strong>Best 2-player browser games</strong>: same-screen picks</span></a>
+          <a class="mini-item" href="games-to-play-with-friends-online.html"><span class="mini-rank">3</span><span><strong>Games to play with friends online</strong>: 17 free picks</span></a>
+          <a class="mini-item" href="games-like-shell-shockers.html"><span class="mini-rank">4</span><span><strong>Shell Shockers alternatives</strong>: free FPS picks</span></a>
         </div>
       </aside>
     </div>
   </section>
 
-  <main>
+  <main id="main-content">
+    <section class="trust-strip" aria-label="About BrowserGames Hub">
+      <div class="container trust-strip-inner">
+        <p><strong>Built for quick play.</strong> Original pixel games, honest labels, and practical guides for friends, couples, and low-end devices.</p>
+        <a href="testing-method.html">How we test games</a>
+      </div>
+    </section>
     <section class="section" id="quick-play">
       <div class="container">
         <div class="section-head">
@@ -105,6 +119,18 @@
       </div>
     </section>
 
+    <section class="section recent-games" data-recent-games hidden aria-labelledby="recent-games-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title" id="recent-games-title">Play again</h2>
+            <p class="section-sub">Your recent games stay on this device, so a quick rematch is always close.</p>
+          </div>
+        </div>
+        <div class="game-stack" data-recent-games-list></div>
+      </div>
+    </section>
+
     <section class="section" id="explore">
       <div class="container">
         <div class="section-head">
@@ -119,7 +145,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9"/><path d="M2 8h20v4H2z"/><path d="M12 8v13"/><path d="M12 2a2 2 0 0 1 2 2c0 .7-.4 1.3-1 1.7V8h-2V5.7C10.4 5.3 10 4.7 10 4a2 2 0 0 1 2-2z"/></svg>
             </span>
             <h3>Long-distance couples</h3>
-            <p>20 free browser games for two people who are far apart, with setup tips and video-call ideas.</p>
+            <p>10 browser and video-call activities for two people who are far apart, with setup tips and trade-offs.</p>
             <span class="bento-link">Read the guide →</span>
           </a>
           <a class="card bento-card" href="game-finder.html">
@@ -143,7 +169,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </span>
             <h3>2-player quick picks</h3>
-            <p>Fireboy &amp; Watergirl, Skribbl.io, Connect 4, Chess, Codenames, and more — all free, all instant.</p>
+            <p>Fireboy &amp; Watergirl, Skribbl.io, Connect 4, Chess, Codenames, and more, with setup notes for remote or local play.</p>
             <span class="bento-link">See quick picks →</span>
           </a>
         </div>
@@ -157,15 +183,15 @@
         <div class="section-head">
           <div>
             <h2 class="section-title">Latest guides</h2>
-            <p class="section-sub">Practical articles written from actual play sessions.</p>
+            <p class="section-sub">Practical articles with setup notes, controls, and clear labels.</p>
           </div>
         </div>
         <div class="post-grid">
           <article class="post-card">
             <div class="post-body">
               <span class="post-tag">Couples</span>
-              <h3>20 Best Online Games for Long-Distance Couples (Free, Browser, 2026)</h3>
-              <p>Free browser games and video-call games for two people far apart — with setup time and how to play.</p>
+              <h3>10 Best Online Games for Long-Distance Couples (Free, Browser, 2026)</h3>
+              <p>Browser games and video-call activities for two people far apart, with setup time and how to play.</p>
               <a href="online-games-for-long-distance-couples.html">Read guide</a>
               <div class="post-meta">Updated: <span data-year>2026</span> · 12 min read</div>
             </div>
@@ -174,7 +200,7 @@
             <div class="post-body">
               <span class="post-tag">Shooter</span>
               <h3>6 Best Games Like Shell Shockers (Free Browser FPS)</h3>
-              <p>Egg-based shooter alternatives: Krunker.io, Venge.io, Ev.io, and more — ranked by how close they feel.</p>
+              <p>Egg-based shooter alternatives: Krunker.io, Venge.io, Ev.io, and more, ranked by how close they feel.</p>
               <a href="games-like-shell-shockers.html">Read guide</a>
               <div class="post-meta">Updated: <span data-year>2026</span> · 10 min read</div>
             </div>
@@ -228,7 +254,7 @@
                 <div class="post-body">
                   <span class="post-tag">Friends</span>
                   <h3>17 Best Games to Play With Friends Online (Free, No Download)</h3>
-                  <p>Free browser games for 2, 3-5, and 6+ players — with setup times and group-size tips.</p>
+                  <p>Free browser games for 2, 3-5, and 6+ players, with setup times and group-size tips.</p>
                   <a href="games-to-play-with-friends-online.html">Read guide</a>
                   <div class="post-meta">Updated: 2026-08-17 · 10 min read</div>
                 </div>
@@ -245,8 +271,8 @@
               <article class="post-card">
                 <div class="post-body">
                   <span class="post-tag">io Games</span>
-                  <h3>Best io Games 2026 (Free Browser Multiplayer)</h3>
-                  <p>Fast, free, no-download multiplayer browser games inspired by the io genre.</p>
+              <h3>Best io-Style Browser Games 2026</h3>
+              <p>Quick-session originals plus external multiplayer services, clearly labeled by play mode.</p>
                   <a href="best-io-games-2026.html">Read guide</a>
                   <div class="post-meta">Updated: 2026-08-17 · 8 min read</div>
                 </div>
@@ -254,8 +280,8 @@
               <article class="post-card">
                 <div class="post-body">
                   <span class="post-tag">Kids</span>
-                  <h3>Best Browser Games for Kids (Safe, Free, No Download)</h3>
-                  <p>No chat, no sign-up, no scary content — simple pixel games for kids.</p>
+                  <h3>Simple Browser Games for Kids (Free, No Download)</h3>
+                  <p>No chat, no sign-up, no scary content, just simple pixel games for kids.</p>
                   <a href="best-browser-games-for-kids.html">Read guide</a>
                   <div class="post-meta">Updated: 2026-08-17 · 8 min read</div>
                 </div>
@@ -269,7 +295,7 @@
         <div class="tool-cta">
           <div>
             <h2>Don't want to read? Use the Game Finder.</h2>
-            <p>Answer three quick filters — players, genre, device — and get a short list of games you can start in one click.</p>
+            <p>Answer five quick filters, including players, device, genre, play style, and time, then start in one click.</p>
           </div>
           <a class="btn btn-primary" href="game-finder.html">Open Game Finder</a>
         </div>
@@ -282,6 +308,9 @@
       <p>© <span data-year>2026</span> BrowserGames Hub. Play instantly, no download.</p>
       <ul class="footer-links">
         <li><a href="privacy-policy.html">Privacy</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="testing-method.html">How we test</a></li>
+        <li><a href="contact.html">Contact</a></li>
         <li><a href="index.html">Home</a></li>
         <li><a href="online-games-for-long-distance-couples.html">Couples Games</a></li>
         <li><a href="game-finder.html">Game Finder</a></li>

@@ -37,15 +37,23 @@
   <meta name="twitter:description" content="Play Neon Shooter online. Shoot moving neon pixel targets in 30 seconds. Free browser game, no download." />
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"VideoGame","name":"Neon Shooter — Free Pixel Target Game (No Download)","url":"https://browsergames.click/games/neon-shooter.html","description":"Play Neon Shooter online. Shoot moving neon pixel targets in 30 seconds. Free browser game, no download.","operatingSystem":"Web Browser","applicationCategory":"Game","genre":"Browser game","author":{"@type":"Organization","name":"BrowserGames Hub","url":"https://browsergames.click"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://browsergames.click/"},{"@type":"ListItem","position":2,"name":"Game Finder","item":"https://browsergames.click/game-finder.html"},{"@type":"ListItem","position":3,"name":"Neon Shooter — Free Pixel Target Game (No Download)","item":"https://browsergames.click/games/neon-shooter.html"}]}]</script>
   <meta name="google-site-verification" content="gT11VOFgOQFxP9c4xvPMM4TDWVwo54k-1dP1TZvyJTs" />
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-579DPCHJ6G"></script>
+  <!-- Analytics is loaded only after the visitor allows optional analytics. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
     gtag('config', 'G-579DPCHJ6G');
   </script>
 </head>
 <body class="game-page">
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="../index.html" aria-label="BrowserGames Hub home">
@@ -76,12 +84,19 @@
     </div>
   </section>
 
-  <main class="container game-wrap">
+  <main id="main-content" class="container game-wrap">
     
       <div class="game-hud"><span>Score: <b id="score">0</b></span><span>Time: <b id="time">30</b></span></div>
       <div class="game-frame"><canvas id="game" width="620" height="360"></canvas></div>
       <button class="btn-restart" id="restart">Restart</button>
       <p class="controls-note">Move the crosshair with your mouse or finger, then click / tap to shoot the targets before time runs out.</p>
+    <section class="game-info prose" aria-labelledby="how-to-play-title">
+      <h2 id="how-to-play-title">How to play Neon Shooter</h2>
+      <p>Move the crosshair with a mouse or finger and hit the neon targets before the 30-second timer ends. Targets can pull your attention to different parts of the board, so treat each click as a choice between speed and accuracy.</p>
+      <h2>Chase consistency</h2>
+      <p>Warm up with a few deliberate hits before trying to maximize the counter. Keep the pointer close to the action and use a larger viewport if small targets feel difficult to select. It is a solo score chase with quick restarts.</p>
+      <p><a href="../game-finder.html">Browse the shooter category</a>, or compare it with <a href="egg-shooter.html">Egg Shooter</a>.</p>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -89,6 +104,9 @@
       <p>© <span data-year>2026</span> BrowserGames Hub. Play instantly, no download.</p>
       <ul class="footer-links">
         <li><a href="../privacy-policy.html">Privacy</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../testing-method.html">How we test</a></li>
+        <li><a href="../contact.html">Contact</a></li>
         <li><a href="../index.html">Home</a></li>
         <li><a href="../game-finder.html">Game Finder</a></li>
         <li><a href="snake.html">Pixel Snake</a></li>

@@ -45,15 +45,23 @@
   <meta name="twitter:description" content="Play Memory Match online. Flip pixel-art cards and match all 8 pairs in as few moves as possible. Free browser game, no download." />
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"VideoGame","name":"Pixel Memory Match — Free Pair-Matching Game (No Download)","url":"https://browsergames.click/games/memory-match.html","description":"Play Memory Match online. Flip pixel-art cards and match all 8 pairs in as few moves as possible. Free browser game, no download.","operatingSystem":"Web Browser","applicationCategory":"Game","genre":"Browser game","author":{"@type":"Organization","name":"BrowserGames Hub","url":"https://browsergames.click"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://browsergames.click/"},{"@type":"ListItem","position":2,"name":"Game Finder","item":"https://browsergames.click/game-finder.html"},{"@type":"ListItem","position":3,"name":"Memory Match — Free Pair-Matching Game (No Download)","item":"https://browsergames.click/games/memory-match.html"}]}]</script>
   <meta name="google-site-verification" content="gT11VOFgOQFxP9c4xvPMM4TDWVwo54k-1dP1TZvyJTs" />
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-579DPCHJ6G"></script>
+  <!-- Analytics is loaded only after the visitor allows optional analytics. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
     gtag('config', 'G-579DPCHJ6G');
   </script>
 </head>
 <body class="game-page">
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="../index.html" aria-label="BrowserGames Hub home">
@@ -84,11 +92,18 @@
     </div>
   </section>
 
-  <main class="container game-wrap">
+  <main id="main-content" class="container game-wrap">
     
     <div class="game-hud"><span>Moves: <b id="moves">0</b></span><span id="msg">Match all 8 pairs!</span></div>
     <div id="grid" class="memory-grid"></div>
     <button class="btn-restart" id="restart">Restart</button>
+    <section class="game-info prose" aria-labelledby="how-to-play-title">
+      <h2 id="how-to-play-title">How to play Memory Match</h2>
+      <p>Turn over two cards at a time and look for matching pixel symbols. Matched cards stay visible; unmatched cards flip back while the move counter increases. Clear all eight pairs to finish the board, then restart for a cleaner memory run.</p>
+      <h2>Use locations, not guesses</h2>
+      <p>Remember where a symbol appeared even when it was not a match. Start with the corners and edges if the center feels crowded, and say the locations aloud when playing with a friend who is watching.</p>
+      <p><a href="../game-finder.html">Find a different puzzle</a>, or play <a href="simon-says.html">Simon Says</a> to train sequence memory.</p>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -96,6 +111,9 @@
       <p>© <span data-year>2026</span> BrowserGames Hub. Play instantly, no download.</p>
       <ul class="footer-links">
         <li><a href="../privacy-policy.html">Privacy</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../testing-method.html">How we test</a></li>
+        <li><a href="../contact.html">Contact</a></li>
         <li><a href="../index.html">Home</a></li>
         <li><a href="../game-finder.html">Game Finder</a></li>
         <li><a href="snake.html">Pixel Snake</a></li>

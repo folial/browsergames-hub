@@ -26,15 +26,23 @@
   <meta name="twitter:description" content="BrowserGames Hub privacy policy: what data we collect, how cookies and third-party ads work, and your rights under GDPR and CCPA." />
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebPage","name":"Privacy Policy","url":"https://browsergames.click/privacy-policy.html","description":"BrowserGames Hub privacy policy: what data we collect, how cookies and third-party ads work, and your rights under GDPR and CCPA.","publisher":{"@type":"Organization","name":"BrowserGames Hub","url":"https://browsergames.click"}}]</script>
   <meta name="google-site-verification" content="gT11VOFgOQFxP9c4xvPMM4TDWVwo54k-1dP1TZvyJTs" />
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-579DPCHJ6G"></script>
+  <!-- Analytics is loaded only after the visitor allows optional analytics. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
     gtag('config', 'G-579DPCHJ6G');
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="index.html" aria-label="BrowserGames Hub home">
@@ -60,11 +68,11 @@
     <div class="container">
       <nav class="breadcrumb"><a href="index.html">Home</a> / Privacy Policy</nav>
       <h1>Privacy Policy</h1>
-      <p class="article-excerpt">Last updated: 2026-08-17. This policy explains what data BrowserGames Hub may collect and how it is used.</p>
+      <p class="article-excerpt">Last updated: 2026-08-28. This policy explains what data BrowserGames Hub may collect and how it is used.</p>
     </div>
   </section>
 
-  <div class="container article-body">
+  <main id="main-content" class="container article-body">
     <article class="prose">
       <h2>Who we are</h2>
       <p>BrowserGames Hub is a website that offers free browser games, game guides, and game-finder tools. Our website is published at https://browsergames.click.</p>
@@ -73,36 +81,38 @@
       <ul>
         <li><strong>Local storage only:</strong> our games store high scores and sound preferences in your browser local storage. This data never leaves your device.</li>
         <li><strong>Server logs:</strong> like most websites, the hosting provider may collect standard server logs (IP address, browser type, pages visited) for security and performance.</li>
-        <li><strong>Cookies and similar technologies:</strong> we do not serve advertising cookies ourselves. Third-party services such as Google AdSense, Google Analytics, or Cloudflare may set cookies if we enable them. When those services are active, they may use cookies to serve and measure ads.</li>
+        <li><strong>Analytics:</strong> Google Analytics 4 is available to understand page views and basic interaction performance, but its script loads only after you allow optional analytics. It may set cookies or collect device and usage information according to Google's policies.</li>
+        <li><strong>Analytics choice:</strong> analytics is set to denied by default. You can allow it in the first-visit notice, continue without analytics, or reopen Privacy choices from the footer at any time.</li>
+        <li><strong>Advertising cookies:</strong> AdSense is not currently active on this site. If we add advertising, Google AdSense or another provider may set cookies or use similar technologies to serve and measure ads.</li>
       </ul>
 
       <h2>How we use data</h2>
       <ul>
         <li>To keep the site working and secure</li>
-        <li>To understand which pages are popular</li>
-        <li>To serve relevant advertising if ad services are enabled</li>
+        <li>To understand which pages and game interactions are useful</li>
+        <li>To serve and measure advertising only after the relevant advertising setup and consent controls are in place</li>
       </ul>
 
       <h2>Third-party links and embedded games</h2>
       <p>Some pages may link to external websites (for example, official game pages). Those sites have their own privacy policies. We are not responsible for their content or data practices.</p>
 
       <h2>Advertising</h2>
-      <p>If we enable advertising, we may use Google AdSense or similar networks. Third-party vendors, including Google, use cookies to serve ads based on prior visits to this or other websites. You can opt out of personalized advertising at <a href="https://adssettings.google.com" target="_blank" rel="noopener">Google Ads Settings</a> or visit <a href="https://www.aboutads.info" target="_blank" rel="noopener">aboutads.info</a>.</p>
+      <p>If we enable advertising, we may use Google AdSense or similar networks. Third-party vendors, including Google, may use cookies to serve ads based on prior visits to this or other websites. For traffic from the EEA, UK, or Switzerland, we will use the consent controls required by the applicable advertising provider before serving personalized ads. You can manage personalized advertising at <a href="https://adssettings.google.com" target="_blank" rel="noopener">Google Ads Settings</a> or visit <a href="https://www.aboutads.info" target="_blank" rel="noopener">aboutads.info</a>.</p>
 
       <h2>Your rights</h2>
       <ul>
         <li><strong>GDPR (EU/UK):</strong> you may request access, correction, or deletion of personal data, and you may object to processing.</li>
         <li><strong>CCPA/CPRA (California):</strong> you may request to know what personal information is collected and to request deletion.</li>
       </ul>
-      <p>To make a request, contact us at leyuanye88@gmail.com.</p>
+      <p>To make a request, contact us at <a href="mailto:leyuanye88@gmail.com">leyuanye88@gmail.com</a>. See our <a href="contact.html">contact page</a> for what to include.</p>
 
       <h2>Children's privacy</h2>
-      <p>This site is intended for a general audience. We do not knowingly collect personal information from children under 13 (or the applicable age in your country). If you believe a child has provided personal data, contact us and we will delete it.</p>
+      <p>This site is intended for a general audience, and one guide is provided for parents considering simple games for children. We do not knowingly collect personal information from children under 13 (or the applicable age in your country). If advertising is enabled, child-directed pages and traffic will receive a separate compliance review rather than automatically using ordinary personalized advertising. If you believe a child has provided personal data, contact us and we will review the request.</p>
 
       <h2>Changes</h2>
       <p>We may update this Privacy Policy from time to time. The latest version will always be posted on this page.</p>
     </article>
-  </div>
+  </main>
 
   <footer class="site-footer">
     <div class="container footer-grid">
@@ -111,6 +121,9 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="game-finder.html">Game Finder</a></li>
         <li><a href="privacy-policy.html">Privacy</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="testing-method.html">How we test</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
   </footer>
