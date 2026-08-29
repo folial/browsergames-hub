@@ -142,14 +142,15 @@ browsergames-hub/
 ## 九、2026-08-28 optimization implementation status
 
 - Added `about.html`, `testing-method.html`, and `contact.html` so visitors and advertisers can see the site's editorial scope, testing limits, and correction path.
-- Reworked privacy wording to describe the GA4 measurement that is actually present, the fact that AdSense is not active yet, and the consent/ads.txt steps required before future advertising.
+- Reworked privacy wording to describe the GA4 measurement and the consent-gated closurenosy.com advertising placements now present, plus the remaining ads.txt/provider requirements.
 - GA4 is now loaded only after optional analytics consent; every page exposes a footer Privacy choices control.
+- Advertising consent now has three choices: analytics and ads, analytics only, or continue without non-essential tools. Ad snippets are isolated in sandboxed frames.
 - Gameplay telemetry now separates page views, real interaction starts, 30-second engaged sessions, and game ends.
 - The homepage restores recent local games, and game pages include a direct report-a-problem path.
 - Rebuilt Game Finder filters around player count, device, play style, genre, and session length. It now exposes result counts, an empty state, keyboard navigation, recent games, and share/rematch/next-game actions.
 - Added accessible skip links and runtime labels/status updates for game boards, scores, filters, and the mobile navigation.
 - Added a distinct, honest explanatory section to all 21 game pages. Local two-player games are labeled as same-screen/pass-and-play; external multiplayer services remain clearly separated in guides.
 - Replaced the sitemap with the 38 indexable URLs now intended for launch and added `ads.txt.template` without a fake publisher ID.
-- Remaining launch tasks are external: verify the real domain in Search Console, obtain an advertising provider's exact seller record, and configure a certified consent-management platform before personalized ads.
+- Remaining launch tasks are external: verify the real domain in Search Console, obtain the advertising provider's exact seller record for ads.txt, and confirm the provider's regional consent/policy requirements before serving personalized ads.
 
 - **2026-08-23**：全站新增 `og-image.png` 社交分享图并接入所有页面 `og:image`/`twitter:image`；`twitter:card` 升级为 `summary_large_image`；补全 `privacy-policy.html` 的 canonical/open graph/JSON-LD；修正首页 hero 第 3 条热门的错配标题；`pixel.css` 移除 `@import` 改为页面并列引用 `style.css` + `pixel.css`（消除串行渲染阻塞）。

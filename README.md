@@ -49,7 +49,7 @@ browsergames-site/
 ├── about.html                                 # Editorial scope and site ownership
 ├── testing-method.html                        # How game and guide claims are checked
 ├── contact.html                               # Corrections, privacy, and partnership contact
-├── privacy-policy.html                        # Analytics and future advertising disclosure
+├── privacy-policy.html                        # Analytics and advertising disclosure
 ├── ads.txt.template                           # Placeholder only; publish after receiving a real seller ID
 ├── 404.html
 ├── games/                                    # All 21 playable games
@@ -66,8 +66,8 @@ browsergames-site/
    Also search-replace it in all HTML files (canonical/og tags use it).
 2. Add Google Search Console and submit `sitemap.xml`.
 3. Keep GA4 and Search Console connected, then wait for real search and gameplay data.
-4. Apply for an advertising provider only after the site has useful, original content and a working correction/contact path.
-5. Before personalized advertising, publish a real /ads.txt record from the provider and add a certified consent-management platform for applicable regions.
+4. Keep the advertising provider's account, creative rules, and regional requirements under review as traffic grows.
+5. Before personalized advertising, publish a real /ads.txt record from the provider and replace the generic choice panel with a certified consent-management platform for applicable regions.
 
 ## SEO already applied
 
@@ -85,14 +85,14 @@ browsergames-site/
 ## Measurement and advertising guardrails
 
 - The current site includes GA4 measurement ID G-579DPCHJ6G; gameplay and finder events are sent only when the page is used.
-- GA4 and advertising consent signals default to denied. The first-visit notice lets a visitor allow optional analytics or continue without it.
-- GA4 is loaded only after optional analytics consent, and the footer includes a Privacy choices control.
+- GA4 and advertising consent signals default to denied. The first-visit notice lets a visitor allow analytics and ads, allow analytics only, or continue without non-essential tools.
+- GA4 is loaded only after optional analytics consent, and the footer includes a Privacy choices control that can reopen both choices.
 - Game telemetry separates `game_view`, interaction-based `game_start`, 30-second `game_engaged`, and `game_end`.
 - The homepage restores recent on-site games locally; game pages include a report-a-problem link.
-- No AdSense publisher script is active in the repository yet. Do not add a fake publisher ID.
+- The supplied closurenosy.com ad placements are consent-gated and isolated in sandboxed frames; they appear in the homepage, finder, guide, or post-game gaps and never over a game board.
+- The kids guide is excluded from automatic ad placement.
 - ads.txt.template is deliberately not /ads.txt. Copy it to /ads.txt only after an advertising provider supplies the exact seller record.
-- Ads should be added in reserved content gaps (guide articles, finder list, or after a game session), never over a game board, start control, or navigation.
-- Update privacy-policy.html and add the provider's consent controls before enabling personalized ads.
+- The provider returned HTTP 403 to direct static fetches during setup, so the supplied scripts should be monitored after launch for rendering and policy changes.
 
 ## Local QA
 

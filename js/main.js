@@ -63,6 +63,148 @@
   };
   window.bgTrack = track;
 
+  const ANALYTICS_CONSENT_KEY = 'bg-analytics-consent';
+  const ADS_CONSENT_KEY = 'bg-ads-consent';
+
+  // ---------- Consent-gated advertising ----------
+  // The supplied provider snippets use document.write. Keeping each snippet
+  // inside a sandboxed srcdoc iframe prevents it from replacing the host page.
+  const AD_SPECS = {
+    native: {
+      width: 728,
+      height: 90,
+      containerId: 'container-2159612fb49e11f57e9f37e6ec0d7f03',
+      scriptSrc: 'https://closurenosy.com/2159612fb49e11f57e9f37e6ec0d7f03/invoke.js'
+    },
+    square: {
+      width: 300,
+      height: 250,
+      key: '3cbb08e9e76cca54036315c6f086b617',
+      scriptSrc: 'https://closurenosy.com/3cbb08e9e76cca54036315c6f086b617/invoke.js'
+    },
+    mobile: {
+      width: 320,
+      height: 50,
+      key: '8254de93204307e465766eae14f0b746',
+      scriptSrc: 'https://closurenosy.com/8254de93204307e465766eae14f0b746/invoke.js'
+    },
+    leaderboard: {
+      width: 728,
+      height: 90,
+      key: '4cc0bb1d00fae973ad12557e68b2018b',
+      scriptSrc: 'https://closurenosy.com/4cc0bb1d00fae973ad12557e68b2018b/invoke.js'
+    }
+  };
+  const GUIDE_PATHS = [
+    'best-2-player-browser-games-no-download.html',
+    'best-browser-games-for-school-chromebook.html',
+    'best-co-op-browser-games.html',
+    'best-free-browser-games-2026.html',
+    'best-io-games-2026.html',
+    'browser-games-for-low-end-pcs.html',
+    'games-like-shell-shockers.html',
+    'games-to-play-with-friends-online.html',
+    'how-to-play-slope.html',
+    'online-games-for-long-distance-couples.html'
+  ];
+  const isGuidePage = () => GUIDE_PATHS.some((page) => window.location.pathname.toLowerCase().endsWith('/' + page));
+  const responsiveAdKind = () => window.matchMedia && window.matchMedia('(min-width: 740px)').matches ? 'leaderboard' : 'mobile';
+  const createAdWrapper = (slotName, kind, reveal) => {
+    const existingSlot = document.querySelector(`[data-ad-slot="${slotName}"]`);
+    if (existingSlot) return existingSlot.closest('.ad-slot-wrap') || existingSlot;
+    const wrapper = document.createElement('section');
+    wrapper.className = 'ad-slot-wrap';
+    wrapper.dataset.adKind = kind;
+    if (reveal) wrapper.dataset.adReveal = reveal;
+    wrapper.setAttribute('aria-label', 'Advertisement');
+    wrapper.hidden = true;
+    const label = document.createElement('span');
+    label.className = 'ad-label';
+    label.textContent = 'Advertisement';
+    const slot = document.createElement('div');
+    slot.className = 'ad-slot';
+    slot.dataset.adSlot = slotName;
+    slot.dataset.adKind = kind;
+    wrapper.append(label, slot);
+    return wrapper;
+  };
+  const adSrcdoc = (spec) => {
+    const reset = '<style>html,body{margin:0;padding:0;background:transparent;overflow:hidden}body{display:flex;justify-content:center;align-items:flex-start;min-height:100vh}iframe{max-width:100%;border:0}</style>';
+    if (spec.containerId) {
+      return '<!doctype html><html><head><meta charset="utf-8">' + reset + '</head><body><script async data-cfasync="false" src="' + spec.scriptSrc + '"><\\/script><div id="' + spec.containerId + '"></div></body></html>';
+    }
+    const options = JSON.stringify({ key: spec.key, format: 'iframe', height: spec.height, width: spec.width, params: {} });
+    return '<!doctype html><html><head><meta charset="utf-8">' + reset + '</head><body><script>var atOptions=' + options + ';<\\/script><script src="' + spec.scriptSrc + '"><\\/script></body></html>';
+  };
+  const renderAdSlot = (wrapper) => {
+    if (!wrapper || wrapper.dataset.adLoaded === 'true') return;
+    const slot = wrapper.querySelector('.ad-slot');
+    if (!slot) return;
+    const requestedKind = wrapper.dataset.adKind;
+    const kind = requestedKind === 'responsive' ? responsiveAdKind() : requestedKind;
+    const spec = AD_SPECS[kind];
+    if (!spec) return;
+    const frame = document.createElement('iframe');
+    frame.className = 'ad-frame';
+    frame.title = 'Advertisement';
+    frame.setAttribute('aria-label', 'Advertisement');
+    frame.setAttribute('sandbox', 'allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox');
+    frame.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+    frame.loading = 'lazy';
+    frame.width = String(spec.width);
+    frame.height = String(spec.height);
+    frame.srcdoc = adSrcdoc(spec);
+    slot.appendChild(frame);
+    wrapper.hidden = false;
+    wrapper.dataset.adLoaded = 'true';
+    track('ad_slot_rendered', { ad_slot: slot.dataset.adSlot, ad_format: kind });
+  };
+  const mountAdPlacements = () => {
+    if (window.location.search.indexOf('embed=1') !== -1 || document.querySelector('[data-ad-slot]')) return;
+    const gameId = pageGameId();
+    if (gameId) {
+      const wrapper = createAdWrapper('game-end-banner', 'responsive', 'game_end');
+      const gameInfo = document.querySelector('.game-info');
+      const gameMain = document.querySelector('main');
+      if (gameInfo) gameInfo.insertAdjacentElement('afterend', wrapper);
+      else if (gameMain) gameMain.appendChild(wrapper);
+      window.bgAdsReveal = () => {
+        if (storage.get(ADS_CONSENT_KEY, '') === 'granted') renderAdSlot(wrapper);
+      };
+      return;
+    }
+    const quickPlay = document.getElementById('quick-play');
+    if (quickPlay) {
+      quickPlay.insertAdjacentElement('afterend', createAdWrapper('homepage-native', 'native'));
+      return;
+    }
+    const finder = document.querySelector('[data-finder-controls]');
+    if (finder) {
+      const grid = document.querySelector('.finder-grid');
+      const wrapper = createAdWrapper('finder-square', 'square');
+      if (grid) grid.insertAdjacentElement('afterend', wrapper);
+      else finder.closest('main')?.appendChild(wrapper);
+      return;
+    }
+    if (isGuidePage()) {
+      const article = document.querySelector('main.article-body article.prose');
+      if (!article) return;
+      const anchor = article.querySelector('.table-wrap') || article.querySelector('p') || article.querySelector('h2');
+      const wrapper = createAdWrapper('guide-square', 'square');
+      if (anchor) anchor.insertAdjacentElement('afterend', wrapper);
+      else article.appendChild(wrapper);
+    }
+  };
+  const initAds = () => {
+    if (window.location.search.indexOf('embed=1') !== -1) return;
+    mountAdPlacements();
+    if (storage.get(ADS_CONSENT_KEY, '') !== 'granted') return;
+    document.querySelectorAll('.ad-slot-wrap').forEach((wrapper) => {
+      if (wrapper.dataset.adReveal !== 'game_end') renderAdSlot(wrapper);
+    });
+  };
+  window.bgAds = { init: initAds, render: renderAdSlot };
+
   const RECENT_KEY = 'bg-recent-games';
   const getRecentGames = () => {
     try {
@@ -235,8 +377,7 @@
   mountSoundButton();
   document.addEventListener('DOMContentLoaded', mountSoundButton, { once: true });
 
-  // ---------- Analytics consent ----------
-  const ANALYTICS_CONSENT_KEY = 'bg-analytics-consent';
+  // ---------- Analytics + advertising consent ----------
   const ANALYTICS_ID = 'G-579DPCHJ6G';
   const loadAnalyticsScript = () => {
     if (window.__bgAnalyticsLoaded || document.querySelector('script[data-bg-analytics], script[src*="googletagmanager.com/gtag/js"]')) return;
@@ -247,22 +388,22 @@
     script.addEventListener('load', () => { window.__bgAnalyticsLoaded = true; }, { once: true });
     document.head.appendChild(script);
   };
-  const applyAnalyticsConsent = (granted) => {
+  const applyPrivacyConsent = (analyticsGranted, adsGranted) => {
     if (typeof window.gtag === 'function') {
       window.gtag('consent', 'update', {
-        analytics_storage: granted ? 'granted' : 'denied',
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied'
+        analytics_storage: analyticsGranted ? 'granted' : 'denied',
+        ad_storage: adsGranted ? 'granted' : 'denied',
+        ad_user_data: adsGranted ? 'granted' : 'denied',
+        ad_personalization: adsGranted ? 'granted' : 'denied'
       });
     }
-    if (granted) loadAnalyticsScript();
+    if (analyticsGranted) loadAnalyticsScript();
   };
-  const openAnalyticsConsent = () => {
+  const openPrivacyChoices = () => {
     if (window.location.search.indexOf('embed=1') !== -1) return;
     const existing = document.querySelector('.consent-banner');
     if (existing) {
-      const allow = existing.querySelector('[data-consent-allow]');
+      const allow = existing.querySelector('[data-consent-all]');
       if (allow) allow.focus();
       return;
     }
@@ -271,28 +412,33 @@
     banner.setAttribute('role', 'region');
     banner.setAttribute('aria-label', 'Privacy choices');
     const privacyHref = pageGameId() ? '../privacy-policy.html' : 'privacy-policy.html';
-    banner.innerHTML = '<div class="consent-banner-inner"><p id="privacy-choice-copy"><strong>Privacy choices.</strong> We use optional analytics to understand which pages and games are useful. You can continue without analytics. <a href="' + privacyHref + '">Read the privacy policy</a>.</p><div class="consent-actions"><button type="button" class="btn btn-primary" data-consent-allow>Allow analytics</button><button type="button" class="btn btn-ghost" data-consent-deny>Continue without</button></div></div>';
+    banner.innerHTML = '<div class="consent-banner-inner"><p id="privacy-choice-copy"><strong>Privacy choices.</strong> We use optional analytics and third-party advertising to keep this site running. Choose what you allow, or continue without non-essential tools. <a href="' + privacyHref + '">Read the privacy policy</a>.</p><div class="consent-actions"><button type="button" class="btn btn-primary" data-consent-all>Allow analytics &amp; ads</button><button type="button" class="btn btn-ghost" data-consent-analytics>Analytics only</button><button type="button" class="btn btn-ghost" data-consent-deny>Continue without</button></div></div>';
     banner.setAttribute('aria-describedby', 'privacy-choice-copy');
-    const choose = (value) => {
-      storage.set(ANALYTICS_CONSENT_KEY, value);
-      applyAnalyticsConsent(value === 'granted');
+    const choose = (analyticsGranted, adsGranted) => {
+      storage.set(ANALYTICS_CONSENT_KEY, analyticsGranted ? 'granted' : 'denied');
+      storage.set(ADS_CONSENT_KEY, adsGranted ? 'granted' : 'denied');
+      applyPrivacyConsent(analyticsGranted, adsGranted);
+      initAds();
       banner.remove();
       const privacyButton = document.querySelector('[data-privacy-choices]');
       if (privacyButton) privacyButton.focus();
     };
-    banner.querySelector('[data-consent-allow]').addEventListener('click', () => choose('granted'));
-    banner.querySelector('[data-consent-deny]').addEventListener('click', () => choose('denied'));
+    banner.querySelector('[data-consent-all]').addEventListener('click', () => choose(true, true));
+    banner.querySelector('[data-consent-analytics]').addEventListener('click', () => choose(true, false));
+    banner.querySelector('[data-consent-deny]').addEventListener('click', () => choose(false, false));
     document.body.appendChild(banner);
-    window.requestAnimationFrame(() => banner.querySelector('[data-consent-allow]').focus());
+    window.requestAnimationFrame(() => banner.querySelector('[data-consent-all]').focus());
   };
-  const initAnalyticsConsent = () => {
+  const initPrivacyConsent = () => {
     if (window.location.search.indexOf('embed=1') !== -1) return;
-    const saved = storage.get(ANALYTICS_CONSENT_KEY, '');
-    if (saved === 'granted' || saved === 'denied') {
-      applyAnalyticsConsent(saved === 'granted');
+    const savedAnalytics = storage.get(ANALYTICS_CONSENT_KEY, '');
+    const savedAds = storage.get(ADS_CONSENT_KEY, '');
+    if ((savedAnalytics === 'granted' || savedAnalytics === 'denied') && (savedAds === 'granted' || savedAds === 'denied')) {
+      applyPrivacyConsent(savedAnalytics === 'granted', savedAds === 'granted');
+      initAds();
       return;
     }
-    openAnalyticsConsent();
+    openPrivacyChoices();
   };
   const addPrivacyChoicesLink = () => {
     if (window.location.search.indexOf('embed=1') !== -1) return;
@@ -304,7 +450,7 @@
     button.className = 'privacy-choice-link';
     button.setAttribute('data-privacy-choices', 'true');
     button.textContent = 'Privacy choices';
-    button.addEventListener('click', openAnalyticsConsent);
+    button.addEventListener('click', openPrivacyChoices);
     item.appendChild(button);
     footerLinks.appendChild(item);
   };
@@ -637,6 +783,7 @@
         duration_seconds: gameStartedAt ? Math.round((Date.now() - gameStartedAt) / 1000) : undefined
       });
       gameStatus.textContent = 'Round ended. Choose Rematch or Next game.';
+      if (typeof window.bgAdsReveal === 'function') window.bgAdsReveal();
     };
     const resetGameEndState = () => { roundEnded = false; };
     window.bgGameEnd = announceGameEnd;
@@ -697,8 +844,9 @@
   const initSharedEnhancements = () => {
     addSkipLink();
     addPrivacyChoicesLink();
-    initAnalyticsConsent();
     if (window.location.search.indexOf('embed=1') !== -1) return;
+    mountAdPlacements();
+    initPrivacyConsent();
     renderRecentGames();
     enhanceGamePage();
   };
